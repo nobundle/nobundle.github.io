@@ -9,4 +9,4 @@ If you need to learn or unrust your Rust have a look at the official Rust book.
 
 ## Rust &amp; Wasm nobundle examples
 
-[go to the book](./book/html/index.html)
+[go to the book](./book/index.html)

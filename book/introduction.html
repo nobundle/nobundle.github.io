@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html" class="active"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="chapter_01.html"><strong aria-hidden="true">3.</strong> Chapter 1</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+<p>The Rust programming language is a great contender, if you want to:</p>
+<ul>
+<li>to build webassembly/JavaScript apps for the web or</li>
+<li>target some specific module that need speeding, memory safety, or both.</li>
+</ul>
+<p>However, most Rust-wasm tutorials, lean heavily on "NPM and webpack", just to get a "hello world".</p>
+<p>More on that <a href="./motivation.html" target="_blank">[here]</a></p>
+<blockquote>
+<p>The following pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust.</p>
+</blockquote>
+<p>More specifically the intent is to address these wishes:</p>
+<ul>
+<li>Rust developers should be able to produce WebAssembly packages for use in JavaScript without requiring a Node.js development environment</li>
+<li>JavaScript developers should be able to use WebAssembly without requiring a Rust development environment</li>
+</ul>
+<p>source: <a href="https://hacks.mozilla.org/2018/04/hello-wasm-pack/">Hello wasm-pack!</a>{target="_bank"}</p>
+<h2 id="no-bundle-wasm-by-example"><a class="header" href="#no-bundle-wasm-by-example">no-bundle Wasm by example</a></h2>
+<h3 id="objectives"><a class="header" href="#objectives">Objectives</a></h3>
+<p>Webassembly is still a moving target and some tools and convenient crates make the experience more appealing.</p>
+<ul>
+<li>Learn how to transform most Rust/wasm tutorials into lean no-bloat rust-wasm with no-bundle.</li>
+<li>Get familliar with the following tools and crates:
+<ul>
+<li><a href="https://rustwasm.github.io/wasm-pack/installer/">wasm-pack</a>{target="_blank"}, (
+<a href="https://rustwasm.github.io/docs/wasm-pack/introduction.html">docs</a>{target="_blank"})</li>
+<li><a href="https://github.com/rustwasm/wasm-bindgen">wasm-bindgen</a>{target="_blank"},
+(<a href="https://rustwasm.github.io/docs/wasm-bindgen/">docs</a>{target="_blank"})</li>
+<li><a href="https://lib.rs/crates/js-sys">js-sys</a>{target="_blank"} &amp; <a href="https://lib.rs/crates/web-sys">web-sys</a>{target="_blank"} (<a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html">js-sys example</a>{target="_blank"},
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html">web-sys examples</a>{target="_blank"} )</li>
+</ul>
+</li>
+</ul>
+<!-- 
+[trunkrs.dev](https://trunkrs.dev/){target="_blank"}  
+-->
+<h3 id="let-the-tutorial-begin"><a class="header" href="#let-the-tutorial-begin">Let the tutorial begin!</a></h3>
+<p>We'll convert each examples from the <a href="https://rustwasm.github.io/docs/wasm-bindgen/">wasm-bindgen guide</a>{target="_blank"} to a no-bundle version.
+For each example or demo:</p>
+<ul>
+<li>Part I, will help you get the example running.</li>
+<li>Part II, will expose or highlight aspects of the code related to wasm-bindgen, wasm-pack or Rust.</li>
+</ul>
+<p>It is assumed that you have Rust on your machine and cargo ready for use.
+(If not get the installer <a href="https://rustup.rs/">here: rustup.rs</a>{target="_blank"}).</p>
+<h4 id="0-get-wasm-pack-and-something-to-serve-our-website-locally"><a class="header" href="#0-get-wasm-pack-and-something-to-serve-our-website-locally">0. Get wasm-pack and something to serve our website locally</a></h4>
+<p>Let's prepare our workspace, and setup our tools.</p>
+<h5 id="01-install-wasm-pack"><a class="header" href="#01-install-wasm-pack">0.1 Install wasm-pack</a></h5>
+<pre><code class="language-sh">cargo install wasm-pack
+</code></pre>
+<p>wasm-pack helps you build rust-generated WebAssembly packages
+Its a useful convenience that is widely used by the Rust community.</p>
+<p>If your interested see <a href="./wasm-pack_under_the_hood.html">wasm-pack under the hood</a>{target="_blank"}</p>
+<h5 id="02-install-a-local-tiny-static-file-server"><a class="header" href="#02-install-a-local-tiny-static-file-server">0.2 Install a local tiny static file server</a></h5>
+<p>We need something to serve your website so we can test and see what we develop on our local machine.
+If you don't have one installed you can use <code>H</code>ost <code>T</code>hese <code>T</code>hings <code>P</code>lease - a basic http server
+for hosting a folder fast and simply <a href="https://github.com/thecoshman/http">http</a>{target="_blank"}</p>
+<pre><code class="language-bash">cargo install https
+</code></pre>
+<p>Note:</p>
+<p><a href="https://trunkrs.dev/">trunkrs.dev</a>{target="_blank"} is getting traction in the Rust community
+but its a much more ambitious tool and beyond our needs here.</p>
+<h3 id="formula-for-converting-examples"><a class="header" href="#formula-for-converting-examples">Formula for Converting examples</a></h3>
+<h4 id="seven-steps-to-hello-world"><a class="header" href="#seven-steps-to-hello-world">Seven steps to hello world</a></h4>
+<ol>
+<li>Set up your file structure</li>
+<li>Edit Cargo.toml: Set the <em>crate-type</em> and add wasm-bindgen as a dependency.</li>
+<li>Get the lib.rs code for hello_world</li>
+<li>Specify type module in index.html</li>
+<li>import with file extension included and Wrap the code in async/await index.js</li>
+<li>build with wasm-pack</li>
+<li>Run the web server and open your browser</li>
+</ol>
+<p>Let's see that in practice with the first example: <a href="./001_hello_world.html">wasm Hello world</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="struct_tech_tut.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="chapter_01.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="struct_tech_tut.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="chapter_01.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
