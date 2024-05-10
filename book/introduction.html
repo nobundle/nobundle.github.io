@@ -173,14 +173,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+                        <h1 id="no-bundle-wasm-by-example"><a class="header" href="#no-bundle-wasm-by-example">no-bundle Wasm by example</a></h1>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
 <p>The Rust programming language is a great contender, if you want to:</p>
 <ul>
 <li>to build webassembly/JavaScript apps for the web or</li>
 <li>target some specific module that need speeding, memory safety, or both.</li>
 </ul>
 <p>However, most Rust-wasm tutorials, lean heavily on "NPM and webpack", just to get a "hello world".</p>
-<p>More on that <a href="./motivation.html" target="_blank">[here]</a></p>
 <blockquote>
 <p>The following pages brings under one location all those bits and pieces you want to know in order to understand and build wasm stuff with Rust.</p>
 </blockquote>
@@ -189,35 +189,30 @@
 <li>Rust developers should be able to produce WebAssembly packages for use in JavaScript without requiring a Node.js development environment</li>
 <li>JavaScript developers should be able to use WebAssembly without requiring a Rust development environment</li>
 </ul>
-<p>source: <a href="https://hacks.mozilla.org/2018/04/hello-wasm-pack/">Hello wasm-pack!</a>{target="_bank"}</p>
-<h2 id="no-bundle-wasm-by-example"><a class="header" href="#no-bundle-wasm-by-example">no-bundle Wasm by example</a></h2>
-<h3 id="objectives"><a class="header" href="#objectives">Objectives</a></h3>
+<p>source: <a href="https://hacks.mozilla.org/2018/04/hello-wasm-pack/" target="_blank">[Hello wasm-pack!]</a></p>
+<h2 id="objectives"><a class="header" href="#objectives">Objectives</a></h2>
 <p>Webassembly is still a moving target and some tools and convenient crates make the experience more appealing.</p>
 <ul>
 <li>Learn how to transform most Rust/wasm tutorials into lean no-bloat rust-wasm with no-bundle.</li>
 <li>Get familliar with the following tools and crates:
 <ul>
-<li><a href="https://rustwasm.github.io/wasm-pack/installer/">wasm-pack</a>{target="_blank"}, (
-<a href="https://rustwasm.github.io/docs/wasm-pack/introduction.html">docs</a>{target="_blank"})</li>
-<li><a href="https://github.com/rustwasm/wasm-bindgen">wasm-bindgen</a>{target="_blank"},
-(<a href="https://rustwasm.github.io/docs/wasm-bindgen/">docs</a>{target="_blank"})</li>
-<li><a href="https://lib.rs/crates/js-sys">js-sys</a>{target="_blank"} &amp; <a href="https://lib.rs/crates/web-sys">web-sys</a>{target="_blank"} (<a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html">js-sys example</a>{target="_blank"},
-<a href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html">web-sys examples</a>{target="_blank"} )</li>
+<li><a href="https://rustwasm.github.io/wasm-pack/installer/" target="_blank">[wasm-pack]</a>,
+<a href="https://rustwasm.github.io/docs/wasm-pack/introduction.html" target="_blank">[docs]</a></li>
+<li><a href="https://github.com/rustwasm/wasm-bindgen" target="_blank">[wasm-bindgen]</a>,
+<a href="https://rustwasm.github.io/docs/wasm-bindgen/" target="_blank">[docs]</a></li>
+<li><a href="https://lib.rs/crates/js-sys" target="_blank">[js-sys]</a> &amp; <a href="https://lib.rs/crates/web-sys" target="_blank">[web-sys]</a>
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-wasm.html" target="_blank">[js-sys example]</a>,
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/dom.html" target="_blank">[web-sys examples]</a></li>
 </ul>
 </li>
 </ul>
-<!-- 
-[trunkrs.dev](https://trunkrs.dev/){target="_blank"}  
--->
-<h3 id="let-the-tutorial-begin"><a class="header" href="#let-the-tutorial-begin">Let the tutorial begin!</a></h3>
-<p>We'll convert each examples from the <a href="https://rustwasm.github.io/docs/wasm-bindgen/">wasm-bindgen guide</a>{target="_blank"} to a no-bundle version.
+<h3 id="methodology"><a class="header" href="#methodology">Methodology</a></h3>
+<p>We'll convert each examples from the <a href="https://rustwasm.github.io/docs/wasm-bindgen/" target="_blank">[wasm-bindgen guide]</a> to a no-bundle version.
 For each example or demo:</p>
 <ul>
-<li>Part I, will help you get the example running.</li>
-<li>Part II, will expose or highlight aspects of the code related to wasm-bindgen, wasm-pack or Rust.</li>
+<li>we'll get the example running.</li>
+<li>we'll expose or highlight aspects of the code related to wasm-bindgen, wasm-pack or Rust.</li>
 </ul>
-<p>It is assumed that you have Rust on your machine and cargo ready for use.
-(If not get the installer <a href="https://rustup.rs/">here: rustup.rs</a>{target="_blank"}).</p>
 <h4 id="0-get-wasm-pack-and-something-to-serve-our-website-locally"><a class="header" href="#0-get-wasm-pack-and-something-to-serve-our-website-locally">0. Get wasm-pack and something to serve our website locally</a></h4>
 <p>Let's prepare our workspace, and setup our tools.</p>
 <h5 id="01-install-wasm-pack"><a class="header" href="#01-install-wasm-pack">0.1 Install wasm-pack</a></h5>
@@ -225,15 +220,15 @@ For each example or demo:</p>
 </code></pre>
 <p>wasm-pack helps you build rust-generated WebAssembly packages
 Its a useful convenience that is widely used by the Rust community.</p>
-<p>If your interested see <a href="./wasm-pack_under_the_hood.html">wasm-pack under the hood</a>{target="_blank"}</p>
+<p>If your interested see <a href="./wasm-pack_under_the_hood.html" target="_blank">[wasm-pack under the hood]</a></p>
 <h5 id="02-install-a-local-tiny-static-file-server"><a class="header" href="#02-install-a-local-tiny-static-file-server">0.2 Install a local tiny static file server</a></h5>
 <p>We need something to serve your website so we can test and see what we develop on our local machine.
 If you don't have one installed you can use <code>H</code>ost <code>T</code>hese <code>T</code>hings <code>P</code>lease - a basic http server
-for hosting a folder fast and simply <a href="https://github.com/thecoshman/http">http</a>{target="_blank"}</p>
+for hosting a folder fast and simply <a href="https://github.com/thecoshman/http" target="_blank">[http]</a></p>
 <pre><code class="language-bash">cargo install https
 </code></pre>
 <p>Note:</p>
-<p><a href="https://trunkrs.dev/">trunkrs.dev</a>{target="_blank"} is getting traction in the Rust community
+<p><a href="https://trunkrs.dev/" target="_blank">[trunkrs.dev]</a> is getting traction in the Rust community
 but its a much more ambitious tool and beyond our needs here.</p>
 <h3 id="formula-for-converting-examples"><a class="header" href="#formula-for-converting-examples">Formula for Converting examples</a></h3>
 <h4 id="seven-steps-to-hello-world"><a class="header" href="#seven-steps-to-hello-world">Seven steps to hello world</a></h4>
