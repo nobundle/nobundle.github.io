@@ -1,0 +1,630 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>wasm-audio-worklet</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="wasm-bindgen_guide.html"><strong aria-hidden="true">3.</strong> from the wasm-bindgen guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.hello_world.html"><strong aria-hidden="true">3.1.</strong> hello_world</a></li><li class="chapter-item expanded "><a href="002.console_log.html"><strong aria-hidden="true">3.2.</strong> console_log</a></li><li class="chapter-item expanded "><a href="003.importing_non-browser_JS.html"><strong aria-hidden="true">3.3.</strong> importing_non-browser_JS</a></li><li class="chapter-item expanded "><a href="004.working_with_the_char_type.html"><strong aria-hidden="true">3.4.</strong> working_with_the_char_type</a></li><li class="chapter-item expanded "><a href="005.wasm-in-wasm.html"><strong aria-hidden="true">3.5.</strong> wasm-in-wasm</a></li><li class="chapter-item expanded "><a href="006.DOM.html"><strong aria-hidden="true">3.6.</strong> DOM</a></li><li class="chapter-item expanded "><a href="007.closures.html"><strong aria-hidden="true">3.7.</strong> closures</a></li><li class="chapter-item expanded "><a href="008.performance.html"><strong aria-hidden="true">3.8.</strong> performance</a></li><li class="chapter-item expanded "><a href="009.fetch.html"><strong aria-hidden="true">3.9.</strong> fetch</a></li><li class="chapter-item expanded "><a href="010.weather_report.html"><strong aria-hidden="true">3.10.</strong> weather_report</a></li><li class="chapter-item expanded "><a href="011.canvas.html"><strong aria-hidden="true">3.11.</strong> canvas</a></li><li class="chapter-item expanded "><a href="012.julia_set.html"><strong aria-hidden="true">3.12.</strong> julia_set</a></li><li class="chapter-item expanded "><a href="013.web_audio.html"><strong aria-hidden="true">3.13.</strong> web_audio</a></li><li class="chapter-item expanded "><a href="014.webgl.html"><strong aria-hidden="true">3.14.</strong> webgl</a></li><li class="chapter-item expanded "><a href="015.websockets.html"><strong aria-hidden="true">3.15.</strong> websockets</a></li><li class="chapter-item expanded "><a href="016.webrtc_datachannel.html"><strong aria-hidden="true">3.16.</strong> webrtc_datachannel</a></li><li class="chapter-item expanded "><a href="017.request-animation-frame.html"><strong aria-hidden="true">3.17.</strong> request-animation-frame</a></li><li class="chapter-item expanded "><a href="paint.html"><strong aria-hidden="true">3.18.</strong> paint</a></li><li class="chapter-item expanded "><a href="019.wasm-in-web-worker.html"><strong aria-hidden="true">3.19.</strong> wasm-in-web-worker</a></li><li class="chapter-item expanded "><a href="020.raytrace-parallel.html"><strong aria-hidden="true">3.20.</strong> raytrace-parallel</a></li><li class="chapter-item expanded "><a href="021.wasm-audio-worklet.html" class="active"><strong aria-hidden="true">3.21.</strong> wasm-audio-worklet</a></li><li class="chapter-item expanded "><a href="022.todomvc.html"><strong aria-hidden="true">3.22.</strong> todomvc</a></li></ol></li><li class="chapter-item expanded "><a href="canvas2d_game.html"><strong aria-hidden="true">4.</strong> Canvas 2d game</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dummy.html"><strong aria-hidden="true">4.1.</strong> dummy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<p>Previous example: <a href="./019.wasm-in-web-worker.html"> <code>&lt;--</code> web-sys: Wasm in Web Worker</a></p>
+<main>
+<h2 id="wasm-audio-worklet"><a class="header" href="#wasm-audio-worklet">Wasm audio worklet</a></h2>
+<p><em>This is an example of using threads inside specific worklets with WebAssembly, Rust, and wasm-bindgen, culminating in an oscillator demo. This demo should complement the parallel-raytrace example by demonstrating an alternative approach using ES modules with on-the-fly module creation.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-audio-worklet">Parallel Raytracing</a>{target="_blank"}</p>
+<h3 id="building-the-demo"><a class="header" href="#building-the-demo">Building the demo</a></h3>
+<p><em>One of the major gotchas with threaded WebAssembly is that Rust does not ship a precompiled target (e.g. standard library) which has threading support enabled. This means that you'll need to recompile the standard library with the appropriate rustc flags, namely -C target-feature=+atomics,+bulk-memory,+mutable-globals. Note that this requires a nightly Rust toolchain.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html">see  more detailed instructions of the parallel-raytrace example</a>{target="_blank"}</p>
+<h4 id="rust-toolchaintoml"><a class="header" href="#rust-toolchaintoml">rust-toolchain.toml</a></h4>
+<pre><code class="language-toml">[toolchain]
+channel = "nightly"
+components = ["rust-src"]
+targets = ["wasm32-unknown-unknown"]
+profile = "minimal"
+</code></pre>
+<h4 id="caveats"><a class="header" href="#caveats">Caveats</a></h4>
+<p><em>This example shares most of its caveats with the parallel-raytrace example. However, it tries to encapsulate worklet creation in a Rust module, so the application developer does not need to maintain custom JS code.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<h4 id="browser-requirements"><a class="header" href="#browser-requirements">Browser Requirements</a></h4>
+<p><em>This demo should work in the latest Chrome and Safari versions at this time. Firefox does not support imports in worklet modules, which are difficult to avoid in this example, as importScripts is unavailable in worklets. Note that this example requires HTTP headers to be set like in parallel-raytrace.</em>
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-audio-worklet.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
+<pre><code class="language-sh">cargo new wasm-audio-worklet --lib
+cd wasm-audio-worklet
+mkdir -p www/js www/html
+</code></pre>
+<ul>
+<li>Edit Cargo.toml</li>
+</ul>
+<pre><code class="language-toml">[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+console_log = "0.2.0"
+js-sys = "0.3.66"
+wasm-bindgen = "0.2.89"
+wasm-bindgen-futures = "0.4.39"
+
+[dependencies.web-sys]
+version = "0.3.66"
+features = [
+  "AudioContext",
+  "AudioDestinationNode",
+  "AudioWorklet",
+  "AudioWorkletNode",
+  "AudioWorkletNodeOptions",
+  "Blob",
+  "BlobPropertyBag",
+  "Document",
+  "Event",
+  "HtmlInputElement",
+  "HtmlLabelElement",
+  "Url",
+  "Window",
+]
+
+
+# Replace command line  
+# cargo build --target wasm32-unknown-unknown -Z build-std=panic_abort,std
+# and 
+# export RUSTFLAGS='-C target-feature=+atomics,+bulk-memory,+mutable-globals'
+# with:
+[unstable]
+build-std = ['std', 'panic_abort']
+
+[build]
+target = "wasm32-unknown-unknown"
+rustflags = '-Ctarget-feature=+atomics,+bulk-memory,+mutable-globals'
+</code></pre>
+<h3 id="the-code"><a class="header" href="#the-code">The code</a></h3>
+<ul>
+<li>index.html</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Wasm audio worklet&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script type="module"&gt;
+            import init, {web_main} from "../pkg/wasm_audio_worklet.js";
+            async function run() {
+                await init();
+                web_main();
+            }
+            run();
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<ul>
+<li>index.js</li>
+</ul>
+<p>No index.js for this example we have it directly in the html file.</p>
+<ul>
+<li>worklet.js</li>
+</ul>
+<pre><code class="language-js">registerProcessor("WasmProcessor", class WasmProcessor extends AudioWorkletProcessor {
+    constructor(options) {
+        super();
+        let [module, memory, handle] = options.processorOptions;
+        bindgen.initSync(module, memory);
+        this.processor = bindgen.WasmAudioProcessor.unpack(handle);
+    }
+    process(inputs, outputs) {
+        return this.processor.process(outputs[0][0]);
+    }
+});
+</code></pre>
+<ul>
+<li>Rust side</li>
+</ul>
+<ul>
+<li>lib.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+mod dependent_module;
+mod gui;
+mod oscillator;
+mod wasm_audio;
+
+use gui::create_gui;
+use oscillator::{Oscillator, Params};
+use wasm_audio::wasm_audio;
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+pub async fn web_main() {
+    // On the application level, audio worklet internals are abstracted by wasm_audio:
+    let params: &amp;'static Params = Box::leak(Box::default());
+    let mut osc = Oscillator::new(params);
+    let ctx = wasm_audio(Box::new(move |buf| osc.process(buf)))
+        .await
+        .unwrap();
+    create_gui(params, ctx);
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>dependent_module</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use js_sys::{Array, JsString};
+use wasm_bindgen::prelude::*;
+use web_sys::{Blob, BlobPropertyBag, Url};
+
+// This is a not-so-clean approach to get the current bindgen ES module URL
+// in Rust. This will fail at run time on bindgen targets not using ES modules.
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen]
+    type ImportMeta;
+
+    #[wasm_bindgen(method, getter)]
+    fn url(this: &amp;ImportMeta) -&gt; JsString;
+
+    #[wasm_bindgen(js_namespace = import, js_name = meta)]
+    static IMPORT_META: ImportMeta;
+}
+
+pub fn on_the_fly(code: &amp;str) -&gt; Result&lt;String, JsValue&gt; {
+    // Generate the import of the bindgen ES module, assuming `--target web`.
+    let header = format!(
+        "import init, * as bindgen from '{}';\n\n",
+        IMPORT_META.url(),
+    );
+
+    Url::create_object_url_with_blob(&amp;Blob::new_with_str_sequence_and_options(
+        &amp;Array::of2(&amp;JsValue::from(header.as_str()), &amp;JsValue::from(code)),
+        BlobPropertyBag::new().type_("text/javascript"),
+    )?)
+}
+
+// dependent_module! takes a local file name to a JS module as input and
+// returns a URL to a slightly modified module in run time. This modified module
+// has an additional import statement in the header that imports the current
+// bindgen JS module under the `bindgen` alias, and the separate init function.
+// How this URL is produced does not matter for the macro user. on_the_fly
+// creates a blob URL in run time. A better, more sophisticated solution
+// would add wasm_bindgen support to put such a module in pkg/ during build time
+// and return a URL to this file instead (described in #3019).
+#[macro_export]
+macro_rules! dependent_module {
+    ($file_name:expr) =&gt; {
+        $crate::dependent_module::on_the_fly(include_str!($file_name))
+    };
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>gui</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use crate::oscillator::Params;
+use wasm_bindgen::{closure::Closure, JsCast, JsValue};
+use web_sys::{AudioContext, HtmlInputElement, HtmlLabelElement};
+
+pub fn create_gui(params: &amp;'static Params, ctx: AudioContext) {
+    let window = web_sys::window().unwrap();
+    let document = window.document().unwrap();
+    let body = document.body().unwrap();
+
+    let volume = add_slider(&amp;document, &amp;body, "Volume:").unwrap();
+    let frequency = add_slider(&amp;document, &amp;body, "Frequency:").unwrap();
+    volume.set_value("0");
+    frequency.set_min("20");
+    frequency.set_value("60");
+
+    let listener = Closure::&lt;dyn FnMut(_)&gt;::new(move |_: web_sys::Event| {
+        params.set_frequency(frequency.value().parse().unwrap());
+        params.set_volume(volume.value().parse().unwrap());
+        drop(ctx.resume().unwrap());
+    })
+    .into_js_value();
+
+    body.add_event_listener_with_callback("input", listener.as_ref().unchecked_ref())
+        .unwrap();
+}
+
+fn add_slider(
+    document: &amp;web_sys::Document,
+    body: &amp;web_sys::HtmlElement,
+    name: &amp;str,
+) -&gt; Result&lt;HtmlInputElement, JsValue&gt; {
+    let input: HtmlInputElement = document.create_element("input")?.unchecked_into();
+    let label: HtmlLabelElement = document.create_element("label")?.unchecked_into();
+    input.set_type("range");
+    label.set_text_content(Some(name));
+    label.append_child(&amp;input)?;
+    body.append_child(&amp;label)?;
+    Ok(input)
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>oscillator</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Wasm audio processors can be implemented in Rust without knowing
+// about audio worklets.
+
+use std::sync::atomic::{AtomicU8, Ordering};
+
+// Let's implement a simple sine oscillator with variable frequency and volume.
+pub struct Oscillator {
+    params: &amp;'static Params,
+    accumulator: u32,
+}
+
+impl Oscillator {
+    pub fn new(params: &amp;'static Params) -&gt; Self {
+        Self {
+            params,
+            accumulator: 0,
+        }
+    }
+}
+
+impl Oscillator {
+    pub fn process(&amp;mut self, output: &amp;mut [f32]) -&gt; bool {
+        // This method is called in the audio process thread.
+        // All imports are set, so host functionality available in worklets
+        // (for example, logging) can be used:
+        // `web_sys::console::log_1(&amp;JsValue::from(output.len()));`
+        // Note that currently TextEncoder and TextDecoder are stubs, so passing
+        // strings may not work in this thread.
+        for a in output {
+            let frequency = self.params.frequency.load(Ordering::Relaxed);
+            let volume = self.params.volume.load(Ordering::Relaxed);
+            self.accumulator += u32::from(frequency);
+            *a = (self.accumulator as f32 / 512.).sin() * (volume as f32 / 100.);
+        }
+        true
+    }
+}
+
+#[derive(Default)]
+pub struct Params {
+    // Use atomics for parameters so they can be set in the main thread and
+    // fetched by the audio process thread without further synchronization.
+    frequency: AtomicU8,
+    volume: AtomicU8,
+}
+
+impl Params {
+    pub fn set_frequency(&amp;self, frequency: u8) {
+        self.frequency.store(frequency, Ordering::Relaxed);
+    }
+    pub fn set_volume(&amp;self, volume: u8) {
+        self.volume.store(volume, Ordering::Relaxed);
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>wasm_audio</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use crate::dependent_module;
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsValue;
+use wasm_bindgen_futures::JsFuture;
+use web_sys::{AudioContext, AudioWorkletNode, AudioWorkletNodeOptions};
+
+#[wasm_bindgen]
+pub struct WasmAudioProcessor(Box&lt;dyn FnMut(&amp;mut [f32]) -&gt; bool&gt;);
+
+#[wasm_bindgen]
+impl WasmAudioProcessor {
+    pub fn process(&amp;mut self, buf: &amp;mut [f32]) -&gt; bool {
+        self.0(buf)
+    }
+    pub fn pack(self) -&gt; usize {
+        Box::into_raw(Box::new(self)) as usize
+    }
+    pub unsafe fn unpack(val: usize) -&gt; Self {
+        *Box::from_raw(val as *mut _)
+    }
+}
+
+// Use wasm_audio if you have a single wasm audio processor in your application
+// whose samples should be played directly. Ideally, call wasm_audio based on
+// user interaction. Otherwise, resume the context on user interaction, so
+// playback starts reliably on all browsers.
+pub async fn wasm_audio(
+    process: Box&lt;dyn FnMut(&amp;mut [f32]) -&gt; bool&gt;,
+) -&gt; Result&lt;AudioContext, JsValue&gt; {
+    let ctx = AudioContext::new()?;
+    prepare_wasm_audio(&amp;ctx).await?;
+    let node = wasm_audio_node(&amp;ctx, process)?;
+    node.connect_with_audio_node(&amp;ctx.destination())?;
+    Ok(ctx)
+}
+
+// wasm_audio_node creates an AudioWorkletNode running a wasm audio processor.
+// Remember to call prepare_wasm_audio once on your context before calling
+// this function.
+pub fn wasm_audio_node(
+    ctx: &amp;AudioContext,
+    process: Box&lt;dyn FnMut(&amp;mut [f32]) -&gt; bool&gt;,
+) -&gt; Result&lt;AudioWorkletNode, JsValue&gt; {
+    AudioWorkletNode::new_with_options(
+        ctx,
+        "WasmProcessor",
+        AudioWorkletNodeOptions::new().processor_options(Some(&amp;js_sys::Array::of3(
+            &amp;wasm_bindgen::module(),
+            &amp;wasm_bindgen::memory(),
+            &amp;WasmAudioProcessor(process).pack().into(),
+        ))),
+    )
+}
+
+pub async fn prepare_wasm_audio(ctx: &amp;AudioContext) -&gt; Result&lt;(), JsValue&gt; {
+    let mod_url = dependent_module!("worklet.js")?;
+    JsFuture::from(ctx.audio_worklet()?.add_module(&amp;mod_url)?).await?;
+    Ok(())
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="running-the-demo"><a class="header" href="#running-the-demo">Running the demo</a></h3>
+<p>"<em>Currently it's required to use the --target no-modules or --target web flag with wasm-bindgen to run threaded code. This is because the WebAssembly file imports memory instead of exporting it, so we need to hook initialization of the wasm module at this time to provide the appropriate memory object. This demo uses --target no-modules, because Firefox does not support modules in workers.</em></p>
+<p><em>With --target no-modules you'll be able to use importScripts inside of each web worker to import the shim JS generated by wasm-bindgen as well as calling the wasm_bindgen initialization function with the shared memory instance from the main thread. The expected usage is that WebAssembly on the main thread will post its memory object to all other threads to get instantiated with.</em>"<br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
+<blockquote>
+<p>This example requires to <em>not</em> create ES modules, therefore we pass the flag
+<code>--target no-modules</code></p>
+</blockquote>
+<pre><code class="language-sh">wasm-pack build --target no-modules --no-typescript --out-dir www/pkg
+
+http www
+</code></pre>
+<p>open <code>index.html</code></p>
+<pre><code class="language-sh">firefox http://localhost:8000/html/
+</code></pre>
+<hr />
+<h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
+<p>Next example: <a href="./022.todomvc.html"> TODO MVC using wasm-bingen and web-sys <code>--&gt;</code></a></p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+<p>let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `</p>
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">hello_world</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="020.raytrace-parallel.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="022.todomvc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="020.raytrace-parallel.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="022.todomvc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

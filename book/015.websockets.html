@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>websockets</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="wasm-bindgen_guide.html"><strong aria-hidden="true">3.</strong> from the wasm-bindgen guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.hello_world.html"><strong aria-hidden="true">3.1.</strong> hello_world</a></li><li class="chapter-item expanded "><a href="002.console_log.html"><strong aria-hidden="true">3.2.</strong> console_log</a></li><li class="chapter-item expanded "><a href="003.importing_non-browser_JS.html"><strong aria-hidden="true">3.3.</strong> importing_non-browser_JS</a></li><li class="chapter-item expanded "><a href="004.working_with_the_char_type.html"><strong aria-hidden="true">3.4.</strong> working_with_the_char_type</a></li><li class="chapter-item expanded "><a href="005.wasm-in-wasm.html"><strong aria-hidden="true">3.5.</strong> wasm-in-wasm</a></li><li class="chapter-item expanded "><a href="006.DOM.html"><strong aria-hidden="true">3.6.</strong> DOM</a></li><li class="chapter-item expanded "><a href="007.closures.html"><strong aria-hidden="true">3.7.</strong> closures</a></li><li class="chapter-item expanded "><a href="008.performance.html"><strong aria-hidden="true">3.8.</strong> performance</a></li><li class="chapter-item expanded "><a href="009.fetch.html"><strong aria-hidden="true">3.9.</strong> fetch</a></li><li class="chapter-item expanded "><a href="010.weather_report.html"><strong aria-hidden="true">3.10.</strong> weather_report</a></li><li class="chapter-item expanded "><a href="011.canvas.html"><strong aria-hidden="true">3.11.</strong> canvas</a></li><li class="chapter-item expanded "><a href="012.julia_set.html"><strong aria-hidden="true">3.12.</strong> julia_set</a></li><li class="chapter-item expanded "><a href="013.web_audio.html"><strong aria-hidden="true">3.13.</strong> web_audio</a></li><li class="chapter-item expanded "><a href="014.webgl.html"><strong aria-hidden="true">3.14.</strong> webgl</a></li><li class="chapter-item expanded "><a href="015.websockets.html" class="active"><strong aria-hidden="true">3.15.</strong> websockets</a></li><li class="chapter-item expanded "><a href="016.webrtc_datachannel.html"><strong aria-hidden="true">3.16.</strong> webrtc_datachannel</a></li><li class="chapter-item expanded "><a href="017.request-animation-frame.html"><strong aria-hidden="true">3.17.</strong> request-animation-frame</a></li><li class="chapter-item expanded "><a href="paint.html"><strong aria-hidden="true">3.18.</strong> paint</a></li><li class="chapter-item expanded "><a href="019.wasm-in-web-worker.html"><strong aria-hidden="true">3.19.</strong> wasm-in-web-worker</a></li><li class="chapter-item expanded "><a href="020.raytrace-parallel.html"><strong aria-hidden="true">3.20.</strong> raytrace-parallel</a></li><li class="chapter-item expanded "><a href="021.wasm-audio-worklet.html"><strong aria-hidden="true">3.21.</strong> wasm-audio-worklet</a></li><li class="chapter-item expanded "><a href="022.todomvc.html"><strong aria-hidden="true">3.22.</strong> todomvc</a></li></ol></li><li class="chapter-item expanded "><a href="canvas2d_game.html"><strong aria-hidden="true">4.</strong> Canvas 2d game</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dummy.html"><strong aria-hidden="true">4.1.</strong> dummy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<p><a href="./014.webgl.html"><code>&lt;--</code> WebGl</a></p>
+<main>
+## web-sys: Web Sockets
+<p><em>This example connects to an echo server on wss://echo.websocket.org, sends a ping message, and receives the response.</em>
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/websockets.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/websockets">web-sys: WebSockets</a>{target="_blank"}</p>
+<p>It is already a no bundle example. :-)</p>
+<h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
+<pre><code class="language-sh">cargo new websockets --lib
+cd websockets
+mkdir -p www/js www/html
+cargo add wasm-bindgen js-sys
+</code></pre>
+<ul>
+<li>Edit Cargo.toml</li>
+</ul>
+<pre><code class="language-toml">[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2.89"
+js-sys = "0.3.66"
+
+[dependencies.web-sys]
+version = "0.3.66"
+features = [
+  "BinaryType",
+  "Blob",
+  "ErrorEvent",
+  "FileReader",
+  "MessageEvent",
+  "ProgressEvent",
+  "WebSocket",
+]
+</code></pre>
+<h3 id="the-code"><a class="header" href="#the-code">The code</a></h3>
+<ul>
+<li>index.html</li>
+</ul>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html;charset=utf-8" http-equiv="Content-Type"/&gt;
+    &lt;title&gt;web sockets: nobundle&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;script type="module" src="../js/index.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>index.js</li>
+</ul>
+<pre><code class="language-js">import init from '../pkg/websockets.js';
+
+window.addEventListener('load', async () =&gt; {
+    await init('../pkg/websockets_bg.wasm');
+});
+
+/*
+async function run() {
+    const wasm = await init().catch(console.error);
+
+}
+run();
+*/
+</code></pre>
+<ul>
+<li>Rust side</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+use wasm_bindgen::prelude::*;
+use web_sys::{ErrorEvent, MessageEvent, WebSocket};
+
+macro_rules! console_log {
+    ($($t:tt)*) =&gt; (log(&amp;format_args!($($t)*).to_string()))
+}
+
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &amp;str);
+}
+
+#[wasm_bindgen(start)]
+fn start_websocket() -&gt; Result&lt;(), JsValue&gt; {
+    // Connect to an echo server
+    let ws = WebSocket::new("wss://echo.websocket.events")?;
+    // For small binary messages, like CBOR, Arraybuffer is more efficient than Blob handling
+    ws.set_binary_type(web_sys::BinaryType::Arraybuffer);
+    // create callback
+    let cloned_ws = ws.clone();
+    let onmessage_callback = Closure::&lt;dyn FnMut(_)&gt;::new(move |e: MessageEvent| {
+        // Handle difference Text/Binary,...
+        if let Ok(abuf) = e.data().dyn_into::&lt;js_sys::ArrayBuffer&gt;() {
+            console_log!("message event, received arraybuffer: {:?}", abuf);
+            let array = js_sys::Uint8Array::new(&amp;abuf);
+            let len = array.byte_length() as usize;
+            console_log!("Arraybuffer received {}bytes: {:?}", len, array.to_vec());
+            // here you can for example use Serde Deserialize decode the message
+            // for demo purposes we switch back to Blob-type and send off another binary message
+            cloned_ws.set_binary_type(web_sys::BinaryType::Blob);
+            match cloned_ws.send_with_u8_array(&amp;[5, 6, 7, 8]) {
+                Ok(_) =&gt; console_log!("binary message successfully sent"),
+                Err(err) =&gt; console_log!("error sending message: {:?}", err),
+            }
+        } else if let Ok(blob) = e.data().dyn_into::&lt;web_sys::Blob&gt;() {
+            console_log!("message event, received blob: {:?}", blob);
+            // better alternative to juggling with FileReader is to use https://crates.io/crates/gloo-file
+            let fr = web_sys::FileReader::new().unwrap();
+            let fr_c = fr.clone();
+            // create onLoadEnd callback
+            let onloadend_cb = Closure::&lt;dyn FnMut(_)&gt;::new(move |_e: web_sys::ProgressEvent| {
+                let array = js_sys::Uint8Array::new(&amp;fr_c.result().unwrap());
+                let len = array.byte_length() as usize;
+                console_log!("Blob received {}bytes: {:?}", len, array.to_vec());
+                // here you can for example use the received image/png data
+            });
+            fr.set_onloadend(Some(onloadend_cb.as_ref().unchecked_ref()));
+            fr.read_as_array_buffer(&amp;blob).expect("blob not readable");
+            onloadend_cb.forget();
+        } else if let Ok(txt) = e.data().dyn_into::&lt;js_sys::JsString&gt;() {
+            console_log!("message event, received Text: {:?}", txt);
+        } else {
+            console_log!("message event, received Unknown: {:?}", e.data());
+        }
+    });
+    // set message event handler on WebSocket
+    ws.set_onmessage(Some(onmessage_callback.as_ref().unchecked_ref()));
+    // forget the callback to keep it alive
+    onmessage_callback.forget();
+
+    let onerror_callback = Closure::&lt;dyn FnMut(_)&gt;::new(move |e: ErrorEvent| {
+        console_log!("error event: {:?}", e);
+    });
+    ws.set_onerror(Some(onerror_callback.as_ref().unchecked_ref()));
+    onerror_callback.forget();
+
+    let cloned_ws = ws.clone();
+    let onopen_callback = Closure::&lt;dyn FnMut()&gt;::new(move || {
+        console_log!("socket opened");
+        match cloned_ws.send_with_str("ping") {
+            Ok(_) =&gt; console_log!("message successfully sent"),
+            Err(err) =&gt; console_log!("error sending message: {:?}", err),
+        }
+        // send off binary message
+        match cloned_ws.send_with_u8_array(&amp;[0, 1, 2, 3]) {
+            Ok(_) =&gt; console_log!("binary message successfully sent"),
+            Err(err) =&gt; console_log!("error sending message: {:?}", err),
+        }
+    });
+    ws.set_onopen(Some(onopen_callback.as_ref().unchecked_ref()));
+    onopen_callback.forget();
+
+    Ok(())
+}
+
+<span class="boring">}</span></code></pre></pre>
+<h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
+<pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
+
+http www
+</code></pre>
+<p>open <code>index.html</code></p>
+<pre><code class="language-sh">firefox http://localhost:8000/html/
+</code></pre>
+<hr />
+<h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
+<p>Next example: <a href="./016.webrtc_datachannel.html"> WebRTC DataChannel <code>--&gt;</code></a></p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+<p>let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `</p>
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">hello_world</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="014.webgl.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="016.webrtc_datachannel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="014.webgl.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="016.webrtc_datachannel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>weather_report</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="wasm-bindgen_guide.html"><strong aria-hidden="true">3.</strong> from the wasm-bindgen guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.hello_world.html"><strong aria-hidden="true">3.1.</strong> hello_world</a></li><li class="chapter-item expanded "><a href="002.console_log.html"><strong aria-hidden="true">3.2.</strong> console_log</a></li><li class="chapter-item expanded "><a href="003.importing_non-browser_JS.html"><strong aria-hidden="true">3.3.</strong> importing_non-browser_JS</a></li><li class="chapter-item expanded "><a href="004.working_with_the_char_type.html"><strong aria-hidden="true">3.4.</strong> working_with_the_char_type</a></li><li class="chapter-item expanded "><a href="005.wasm-in-wasm.html"><strong aria-hidden="true">3.5.</strong> wasm-in-wasm</a></li><li class="chapter-item expanded "><a href="006.DOM.html"><strong aria-hidden="true">3.6.</strong> DOM</a></li><li class="chapter-item expanded "><a href="007.closures.html"><strong aria-hidden="true">3.7.</strong> closures</a></li><li class="chapter-item expanded "><a href="008.performance.html"><strong aria-hidden="true">3.8.</strong> performance</a></li><li class="chapter-item expanded "><a href="009.fetch.html"><strong aria-hidden="true">3.9.</strong> fetch</a></li><li class="chapter-item expanded "><a href="010.weather_report.html" class="active"><strong aria-hidden="true">3.10.</strong> weather_report</a></li><li class="chapter-item expanded "><a href="011.canvas.html"><strong aria-hidden="true">3.11.</strong> canvas</a></li><li class="chapter-item expanded "><a href="012.julia_set.html"><strong aria-hidden="true">3.12.</strong> julia_set</a></li><li class="chapter-item expanded "><a href="013.web_audio.html"><strong aria-hidden="true">3.13.</strong> web_audio</a></li><li class="chapter-item expanded "><a href="014.webgl.html"><strong aria-hidden="true">3.14.</strong> webgl</a></li><li class="chapter-item expanded "><a href="015.websockets.html"><strong aria-hidden="true">3.15.</strong> websockets</a></li><li class="chapter-item expanded "><a href="016.webrtc_datachannel.html"><strong aria-hidden="true">3.16.</strong> webrtc_datachannel</a></li><li class="chapter-item expanded "><a href="017.request-animation-frame.html"><strong aria-hidden="true">3.17.</strong> request-animation-frame</a></li><li class="chapter-item expanded "><a href="paint.html"><strong aria-hidden="true">3.18.</strong> paint</a></li><li class="chapter-item expanded "><a href="019.wasm-in-web-worker.html"><strong aria-hidden="true">3.19.</strong> wasm-in-web-worker</a></li><li class="chapter-item expanded "><a href="020.raytrace-parallel.html"><strong aria-hidden="true">3.20.</strong> raytrace-parallel</a></li><li class="chapter-item expanded "><a href="021.wasm-audio-worklet.html"><strong aria-hidden="true">3.21.</strong> wasm-audio-worklet</a></li><li class="chapter-item expanded "><a href="022.todomvc.html"><strong aria-hidden="true">3.22.</strong> todomvc</a></li></ol></li><li class="chapter-item expanded "><a href="canvas2d_game.html"><strong aria-hidden="true">4.</strong> Canvas 2d game</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dummy.html"><strong aria-hidden="true">4.1.</strong> dummy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<main>
+<p><a href="./009_fetch.html"><code>&lt;--</code> The fetch API</a></p>
+<h2 id="web-sys-weather-report"><a class="header" href="#web-sys-weather-report">web-sys: Weather report</a></h2>
+<p><em>This example makes an HTTP request to <a href="https://openweathermap.org/">OpenWeather API</a>{target="_blank"}, parses response in JSON and render UI from that JSON. It also shows the usage of spawn_local function for handling asynchronous tasks.</em>
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/weather_report.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/weather_report">web-sys: Weather report</a>{target="_blank"}</p>
+<p><span style="color:red">The original example asks us to add our api key in get_response() before running this application.</span><br />
+<b>Let's use <a href="https://open-meteo.com/">open-meteo</a> instead</b>. Open-Meteo is an open-source weather API and offers free access for non-commercial use. No API key required.</p>
+<p>Our crate will be called meteo. we'll keep it simple to avoid <em>noise</em>
+in our code that distract us from the aim of this example.</p>
+<h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
+<pre><code class="language-sh">cargo new meteo --lib
+cd meteo
+mkdir -p www/js www/html
+cargo add wasm-bindgen js-sys wasm-bindgen-futures
+
+</code></pre>
+<p>edit Cargo.toml to add <code>crate-type</code> &amp; dependencies</p>
+<pre><code class="language-toml">[lib]
+crate-type = ["cdylib",]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gloo = "0.11.0"
+json = "0.12.4"
+reqwest = { version = "0.11.23", features = ["json"] } # reqwest with JSON parsing support
+serde = { version = "1.0.193", features = ["derive"] }
+wasm-bindgen = "0.2.90"
+wasm-bindgen-futures = "0.4.40"
+
+
+[dependencies.web-sys]
+version = "0.3.67"
+features = [
+  'Document',
+  'Element',
+  'HtmlSelectElement',
+  'Window',
+]
+</code></pre>
+<p>in <code>www/html/index.html</code> we have</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html;charset=utf-8" http-equiv="Content-Type"/&gt;
+    &lt;title&gt;weather-report: meteo &lt;/title&gt;
+    &lt;style&gt;
+        body {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    
+    &lt;script type="module" src="../js/index.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>and in <code>www/js/index.js</code></p>
+<pre><code class="language-js">import init from "../pkg/meteo.js"
+
+async function run() {
+    const wasm = await init().catch(console.error);
+}
+
+run();
+</code></pre>
+<h2 id="rustwasm-side"><a class="header" href="#rustwasm-side">Rust/wasm side</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+use serde::{Deserialize, Serialize};
+use wasm_bindgen::prelude::*;
+use web_sys::{Document, Element,};
+use gloo::events::EventListener;
+use reqwest::Error; 
+use wasm_bindgen_futures::spawn_local;
+
+
+#[derive(Serialize, Deserialize)]
+struct Current {
+    interval: i32,       //900
+    temperature_2m: f32, //20.0
+    time: String,        //"2024-01-02T18:15"
+    wind_speed_10m: f32, //21.3
+}
+
+#[derive(Serialize, Deserialize)]
+struct CurrentUnits {
+    interval: String,       //"seconds"
+    temperature_2m: String, //"°C"
+    time: String,           //"iso8601"
+    wind_speed_10m: String, //"km/h"
+}
+
+#[derive(Serialize, Deserialize)]
+struct OpenMeteo {
+    current: Current,
+    current_units: CurrentUnits,
+    elevation: f32,                //1252.0
+    generationtime_ms: f32,        //0.032067298889160156
+    latitude: f32,                 //-18.875
+    longitude: f32,                //47.5
+    timezone: String,              //"GMT"
+    timezone_abbreviation: String, //"GMT"
+    utc_offset_seconds: u8,        //0
+}
+
+struct CountryData {
+    name: String,
+    capital: String,
+    lat: f32,
+    lon: f32
+}
+
+fn sample() -&gt; Vec&lt;CountryData&gt; {
+       vec![
+        CountryData { 
+            name: "Madagascar".to_string(),
+            capital: "Antananarivo".to_string(),
+            lat: -18.91368, 
+            lon: 47.53613
+        },
+        CountryData { 
+            name: "Nepal".to_string(),
+            capital: "Kathmandu".to_string(),
+            lat: 27.70169, 
+            lon: 85.3206
+        },
+        CountryData { 
+            name: "Oman".to_string(),
+            capital: "Muscat".to_string(),
+            lat: 23.58413,
+            lon: 58.40778
+        },
+        CountryData { 
+            name: "Peru".to_string(),
+            capital: "Lima".to_string(),
+            lat: -12.04318,
+            lon: -77.02824
+        },
+        CountryData { 
+            name: "Quatar".to_string(),
+            capital: "Doha".to_string(),
+            lat: 25.28545,
+            lon: 51.53096
+        },
+        CountryData { 
+            name: "Rwanda".to_string(),
+            capital: "Kigali".to_string(),
+            lat: -1.94995, 
+            lon: 30.05885
+        },
+        CountryData { 
+            name: "Singapore".to_string(),
+            capital: "Singapore".to_string(),
+            lat: 1.28967, 
+            lon: 103.85007
+        },
+     ]
+
+}
+
+// Called by our JS entry point to run the example
+#[wasm_bindgen(start)]
+async fn run() -&gt; Result&lt;(), JsValue&gt; {
+    let country_list = sample();
+
+    // Use `web_sys`'s global `window` function to get a handle on the global
+    // window object.
+    let window = web_sys::window().expect("no global `window` exists");
+    let document = window.document().expect("should have a document on window");
+    let body = document.body().expect("document should have a body");
+
+    // mk City list
+    let select_city_list = mkcity_list(&amp;document);
+    body.append_child(&amp;select_city_list).unwrap();
+
+    //
+    let val = document.create_element("div")?;
+    val.set_id("country_temp");
+    body.append_child(&amp;val).unwrap();
+
+    //
+    let select_country = document.get_element_by_id("country_list")  // -&gt; Option&lt;Element&gt; 
+        .unwrap()                                                    // We need to cast Element
+        .dyn_into::&lt;web_sys::HtmlSelectElement&gt;()                    // into HtmlSelectElement
+        .unwrap();    
+    let select_country_hello = select_country.clone();
+    let mut index: usize =0;
+    
+    let on_click = EventListener::new(&amp;select_country, "click", move |_event| {
+        let val = val.clone();
+
+        // detect selection        
+        index = select_country_hello.selected_index() as usize;
+        web_sys::console::log_2(&amp;"Country Index:%s".into(), &amp;index.into());
+        // get selected country lat lon data
+        let target_info = &amp;country_list[index];
+        let target_capital = target_info.capital.clone();        
+
+        // get city data
+        let city_data = get_temp(target_info.lat, target_info.lon);//-18.879190, 47.507904).await?;
+
+        spawn_local(async move {
+            let target = city_data.await.unwrap();
+            //display result
+            val.set_inner_html(&amp;format!("{} \ntemp:{}{}", 
+                            target_capital.as_str(),
+                            target.current.temperature_2m,          
+                            target.current_units.temperature_2m));
+        });//^-- spawn
+
+    }); //^-- on_click
+
+    
+    on_click.forget();
+
+    Ok(())
+}
+
+
+fn mkcity_list(document: &amp;Document) -&gt; Element {
+    let select_box = document.create_element("select").unwrap();
+    select_box.set_id("country_list");
+    let _ = document.body().unwrap().append_child(&amp;select_box);
+    //
+    for country in [
+        "Madagascar",
+        "Nepal",
+        "Oman",
+        "Peru",
+        "Quatar",
+        "Rwanda",
+        "Singapore",
+    ] {
+        let option = document.create_element("option").unwrap();
+        option.set_text_content(Some(country));
+        let _ = select_box.append_child(&amp;option);
+    }
+
+    select_box
+}
+
+
+
+async fn get_temp(lat: f32, lon: f32) -&gt; Result&lt;OpenMeteo, Error&gt; { // 47.507905
+    let url = format!("https://api.open-meteo.com/v1/forecast?latitude={lat}&amp;longitude={lon}&amp;current=temperature_2m,wind_speed_10m"); //latitude=-18.879190&amp;longitude=47.507904
+
+    let selection =  reqwest::get(url).await?.json::&lt;OpenMeteo&gt;().await?;
+
+    Ok(selection)
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
+<pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
+
+http www
+</code></pre>
+<p>open <code>index.html</code></p>
+<pre><code class="language-sh">firefox http://localhost:8000/html/
+</code></pre>
+<hr />
+<h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
+<p>Next example: <a href="./011.canvas.html">web-sys: canvas hello world <code>--&gt;</code></a></p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+<p>let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `</p>
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">hello_world</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="009.fetch.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="011.canvas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="009.fetch.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="011.canvas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

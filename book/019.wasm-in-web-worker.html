@@ -1,0 +1,577 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>wasm-in-web-worker</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="wasm-bindgen_guide.html"><strong aria-hidden="true">3.</strong> from the wasm-bindgen guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.hello_world.html"><strong aria-hidden="true">3.1.</strong> hello_world</a></li><li class="chapter-item expanded "><a href="002.console_log.html"><strong aria-hidden="true">3.2.</strong> console_log</a></li><li class="chapter-item expanded "><a href="003.importing_non-browser_JS.html"><strong aria-hidden="true">3.3.</strong> importing_non-browser_JS</a></li><li class="chapter-item expanded "><a href="004.working_with_the_char_type.html"><strong aria-hidden="true">3.4.</strong> working_with_the_char_type</a></li><li class="chapter-item expanded "><a href="005.wasm-in-wasm.html"><strong aria-hidden="true">3.5.</strong> wasm-in-wasm</a></li><li class="chapter-item expanded "><a href="006.DOM.html"><strong aria-hidden="true">3.6.</strong> DOM</a></li><li class="chapter-item expanded "><a href="007.closures.html"><strong aria-hidden="true">3.7.</strong> closures</a></li><li class="chapter-item expanded "><a href="008.performance.html"><strong aria-hidden="true">3.8.</strong> performance</a></li><li class="chapter-item expanded "><a href="009.fetch.html"><strong aria-hidden="true">3.9.</strong> fetch</a></li><li class="chapter-item expanded "><a href="010.weather_report.html"><strong aria-hidden="true">3.10.</strong> weather_report</a></li><li class="chapter-item expanded "><a href="011.canvas.html"><strong aria-hidden="true">3.11.</strong> canvas</a></li><li class="chapter-item expanded "><a href="012.julia_set.html"><strong aria-hidden="true">3.12.</strong> julia_set</a></li><li class="chapter-item expanded "><a href="013.web_audio.html"><strong aria-hidden="true">3.13.</strong> web_audio</a></li><li class="chapter-item expanded "><a href="014.webgl.html"><strong aria-hidden="true">3.14.</strong> webgl</a></li><li class="chapter-item expanded "><a href="015.websockets.html"><strong aria-hidden="true">3.15.</strong> websockets</a></li><li class="chapter-item expanded "><a href="016.webrtc_datachannel.html"><strong aria-hidden="true">3.16.</strong> webrtc_datachannel</a></li><li class="chapter-item expanded "><a href="017.request-animation-frame.html"><strong aria-hidden="true">3.17.</strong> request-animation-frame</a></li><li class="chapter-item expanded "><a href="paint.html"><strong aria-hidden="true">3.18.</strong> paint</a></li><li class="chapter-item expanded "><a href="019.wasm-in-web-worker.html" class="active"><strong aria-hidden="true">3.19.</strong> wasm-in-web-worker</a></li><li class="chapter-item expanded "><a href="020.raytrace-parallel.html"><strong aria-hidden="true">3.20.</strong> raytrace-parallel</a></li><li class="chapter-item expanded "><a href="021.wasm-audio-worklet.html"><strong aria-hidden="true">3.21.</strong> wasm-audio-worklet</a></li><li class="chapter-item expanded "><a href="022.todomvc.html"><strong aria-hidden="true">3.22.</strong> todomvc</a></li></ol></li><li class="chapter-item expanded "><a href="canvas2d_game.html"><strong aria-hidden="true">4.</strong> Canvas 2d game</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dummy.html"><strong aria-hidden="true">4.1.</strong> dummy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<p>Previous example: <a href="./018.paint.html"><code>&lt;--</code> A Simple Paint Program</a></p>
+<main>
+<h2 id="web-sys-wasm-in-web-worker"><a class="header" href="#web-sys-wasm-in-web-worker">web-sys: Wasm in Web Worker</a></h2>
+<p><em>A simple example of parallel execution by spawning a web worker with web_sys, loading Wasm code in the web worker and interacting between the main thread and the worker.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/wasm-in-web-worker.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/wasm-in-web-worker">web-sys: Wasm in Web Worker</a>{target="_blank"}</p>
+<h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
+<pre><code class="language-sh">cargo new wasm-in-web-worker --lib
+cd wasm-in-web-worker
+mkdir -p www/js www/html www/css
+cargo add wasm-bindgen console_error_panic_hook --optional
+</code></pre>
+<ul>
+<li>Edit Cargo.toml</li>
+</ul>
+<pre><code class="language-toml">
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+console_error_panic_hook = { version = "0.1.7", optional = true }
+wasm-bindgen = "0.2.89"
+
+[dependencies.web-sys]
+version = "0.3.66"
+features = [
+    'console',
+    'Document',
+    'HtmlElement',
+    'HtmlInputElement',
+    'MessageEvent',
+    'Window',
+    'Worker',
+]
+</code></pre>
+<h3 id="the-code"><a class="header" href="#the-code">The code</a></h3>
+<ul>
+<li>index.html</li>
+</ul>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html;charset=utf-8" http-equiv="Content-Type"/&gt;
+    &lt;title&gt;Wasm in Web Worker: nobundle&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../css/style.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+&lt;div id="wrapper"&gt;
+        &lt;h1&gt;Main Thread/Wasm Web Worker Interaction&lt;/h1&gt;
+
+        &lt;label for="inputNumber"&gt;Input &lt;b&gt;numbers&lt;/b&gt; to verify if it is odd or even&lt;/label&gt;
+
+        &lt;input type="text" id="inputNumber" name="inputNumber"&gt;
+
+        &lt;div id="resultField"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Make `wasm_bindgen` available for `index.js` --&gt;
+    &lt;script src='../pkg/wasm_in_web_worker.js'&gt;&lt;/script&gt;
+    
+    &lt;!-- Note that there is no `type="module"` in the script tag --&gt;
+    &lt;script src="../index.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>style.css</li>
+</ul>
+<pre><code class="language-css">body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif; 
+    color: white;
+    background-color: black;
+}
+
+#wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#inputNumber {
+    text-align: center;
+}
+
+#resultField {
+    text-align: center;
+    height: 1em;
+    padding-top: 0.2em;
+}
+</code></pre>
+<ul>
+<li>index.js</li>
+</ul>
+<pre><code class="language-js">// We only need `startup` here which is the main entry point
+// In theory, we could also use all other functions/struct types from Rust which we have bound with
+// `#[wasm_bindgen]`
+
+const {startup} = wasm_bindgen;
+
+async function run_wasm() {
+    // Load the wasm file by awaiting the Promise returned by `wasm_bindgen`
+    // `wasm_bindgen` was imported in `index.html`
+    await wasm_bindgen();
+
+    console.log('index.js loaded');
+
+    // Run main Wasm entry point
+    // This will create a worker from within our Rust code compiled to Wasm
+    startup();
+}
+
+run_wasm();
+
+</code></pre>
+<ul>
+<li>worker.js</li>
+</ul>
+<pre><code class="language-js">// The worker has its own scope and no direct access to functions/objects of the
+// global scope. We import the generated JS file to make `wasm_bindgen`
+// available which we need to initialize our Wasm code.
+importScripts('../pkg/wasm_in_web_worker.js');
+
+console.log('Initializing worker')
+
+// In the worker, we have a different struct that we want to use as in
+// `index.js`.
+const {NumberEval} = wasm_bindgen;
+
+async function init_wasm_in_worker() {
+    // Load the wasm file by awaiting the Promise returned by `wasm_bindgen`.
+    await wasm_bindgen('../pkg/wasm_in_web_worker_bg.wasm');
+
+    // Create a new object of the `NumberEval` struct.
+    var num_eval = NumberEval.new();
+
+    // Set callback to handle messages passed to the worker.
+    self.onmessage = async event =&gt; {
+        // By using methods of a struct as reaction to messages passed to the
+        // worker, we can preserve our state between messages.
+        var worker_result = num_eval.is_even(event.data);
+
+        // Send response back to be handled by callback in main thread.
+        self.postMessage(worker_result);
+    };
+};
+
+init_wasm_in_worker();
+</code></pre>
+<ul>
+<li>Rust side</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+use std::cell::RefCell;
+use std::rc::Rc;
+use wasm_bindgen::prelude::*;
+use web_sys::{console, HtmlElement, HtmlInputElement, MessageEvent, Worker};
+
+/// A number evaluation struct
+///
+/// This struct will be the main object which responds to messages passed to the
+/// worker. It stores the last number which it was passed to have a state. The
+/// statefulness is not is not required in this example but should show how
+/// larger, more complex scenarios with statefulness can be set up.
+#[wasm_bindgen]
+pub struct NumberEval {
+    number: i32,
+}
+
+#[wasm_bindgen]
+impl NumberEval {
+    /// Create new instance.
+    pub fn new() -&gt; NumberEval {
+        NumberEval { number: 0 }
+    }
+
+    /// Check if a number is even and store it as last processed number.
+    ///
+    /// # Arguments
+    ///
+    /// * `number` - The number to be checked for being even/odd.
+    pub fn is_even(&amp;mut self, number: i32) -&gt; bool {
+        self.number = number;
+        self.number % 2 == 0
+    }
+
+    /// Get last number that was checked - this method is added to work with
+    /// statefulness.
+    pub fn get_last_number(&amp;self) -&gt; i32 {
+        self.number
+    }
+}
+
+/// Run entry point for the main thread.
+#[wasm_bindgen]
+pub fn startup() {
+    // Here, we create our worker. In a larger app, multiple callbacks should be
+    // able to interact with the code in the worker. Therefore, we wrap it in
+    // `Rc&lt;RefCell&gt;` following the interior mutability pattern. Here, it would
+    // not be needed but we include the wrapping anyway as example.
+    // to avoid cross-site error on the local server we don't use relative path `./js/workewr.js`
+    let worker_handle = Rc::new(RefCell::new(Worker::new("http://localhost:8000/js/worker.js").unwrap()));
+    console::log_1(&amp;"Created a new worker from within Wasm".into());
+
+    // Pass the worker to the function which sets up the `oninput` callback.
+    setup_input_oninput_callback(worker_handle);
+}
+
+fn setup_input_oninput_callback(worker: Rc&lt;RefCell&lt;web_sys::Worker&gt;&gt;) {
+    let document = web_sys::window().unwrap().document().unwrap();
+
+    // If our `onmessage` callback should stay valid after exiting from the
+    // `oninput` closure scope, we need to either forget it (so it is not
+    // destroyed) or store it somewhere. To avoid leaking memory every time we
+    // want to receive a response from the worker, we move a handle into the
+    // `oninput` closure to which we will always attach the last `onmessage`
+    // callback. The initial value will not be used and we silence the warning.
+    #[allow(unused_assignments)]
+    let mut persistent_callback_handle = get_on_msg_callback();
+
+    let callback = Closure::new(move || {
+        console::log_1(&amp;"oninput callback triggered".into());
+        let document = web_sys::window().unwrap().document().unwrap();
+
+        let input_field = document
+            .get_element_by_id("inputNumber")
+            .expect("#inputNumber should exist");
+        let input_field = input_field
+            .dyn_ref::&lt;HtmlInputElement&gt;()
+            .expect("#inputNumber should be a HtmlInputElement");
+
+        // If the value in the field can be parsed to a `i32`, send it to the
+        // worker. Otherwise clear the result field.
+        match input_field.value().parse::&lt;i32&gt;() {
+            Ok(number) =&gt; {
+                // Access worker behind shared handle, following the interior
+                // mutability pattern.
+                let worker_handle = &amp;*worker.borrow();
+                let _ = worker_handle.post_message(&amp;number.into());
+                persistent_callback_handle = get_on_msg_callback();
+
+                // Since the worker returns the message asynchronously, we
+                // attach a callback to be triggered when the worker returns.
+                worker_handle
+                    .set_onmessage(Some(persistent_callback_handle.as_ref().unchecked_ref()));
+            }
+            Err(_) =&gt; {
+                document
+                    .get_element_by_id("resultField")
+                    .expect("#resultField should exist")
+                    .dyn_ref::&lt;HtmlElement&gt;()
+                    .expect("#resultField should be a HtmlInputElement")
+                    .set_inner_text("");
+            }
+        }
+    });
+
+    // Attach the closure as `oninput` callback to the input field.
+    document
+        .get_element_by_id("inputNumber")
+        .expect("#inputNumber should exist")
+        .dyn_ref::&lt;HtmlInputElement&gt;()
+        .expect("#inputNumber should be a HtmlInputElement")
+        .set_oninput(Some(callback.as_ref().unchecked_ref()));
+
+    // Leaks memory.
+    callback.forget();
+}
+
+/// Create a closure to act on the message returned by the worker
+fn get_on_msg_callback() -&gt; Closure&lt;dyn FnMut(MessageEvent)&gt; {
+    Closure::new(move |event: MessageEvent| {
+        console::log_2(&amp;"Received response: ".into(), &amp;event.data());
+
+        let result = match event.data().as_bool().unwrap() {
+            true =&gt; "even",
+            false =&gt; "odd",
+        };
+
+        let document = web_sys::window().unwrap().document().unwrap();
+        document
+            .get_element_by_id("resultField")
+            .expect("#resultField should exist")
+            .dyn_ref::&lt;HtmlElement&gt;()
+            .expect("#resultField should be a HtmlInputElement")
+            .set_inner_text(result);
+    })
+}
+
+<span class="boring">}</span></code></pre></pre>
+<h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
+<blockquote>
+<p>This example requires to <em>not</em> create ES modules, therefore we pass the flag
+<code>--target no-modules</code></p>
+</blockquote>
+<pre><code class="language-sh">wasm-pack build --target no-modules --no-typescript --out-dir www/pkg
+
+http www
+</code></pre>
+<p>open <code>index.html</code></p>
+<pre><code class="language-sh">firefox http://localhost:8000/html/
+</code></pre>
+<p>NOTE:</p>
+<p>You may need to Enable SharedArrayBuffers in Firefox</p>
+<p>In early 2018, the Spectre and Meltdown vulnerabilities were discovered. In response, browser manufacturers disabled SharedArrayBuffer by default.</p>
+<ul>
+<li>Open Firefox.</li>
+<li>Navigate to about:config.</li>
+<li>Click I accept the risk!</li>
+<li>Search for shared.</li>
+<li>Double-click javascript.options.shared_memory.</li>
+<li>This option should now have the value true:</li>
+</ul>
+<hr />
+<h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
+<p>Next example: <a href="./020.raytrace-parallel.html"> threads: Parallel Raytracing <code>--&gt;</code></a></p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+<p>let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `</p>
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">hello_world</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="paint.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="020.raytrace-parallel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="paint.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="020.raytrace-parallel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

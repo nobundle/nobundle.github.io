@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>importing_non-browser_JS</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="wasm-bindgen_guide.html"><strong aria-hidden="true">3.</strong> from the wasm-bindgen guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.hello_world.html"><strong aria-hidden="true">3.1.</strong> hello_world</a></li><li class="chapter-item expanded "><a href="002.console_log.html"><strong aria-hidden="true">3.2.</strong> console_log</a></li><li class="chapter-item expanded "><a href="003.importing_non-browser_JS.html" class="active"><strong aria-hidden="true">3.3.</strong> importing_non-browser_JS</a></li><li class="chapter-item expanded "><a href="004.working_with_the_char_type.html"><strong aria-hidden="true">3.4.</strong> working_with_the_char_type</a></li><li class="chapter-item expanded "><a href="005.wasm-in-wasm.html"><strong aria-hidden="true">3.5.</strong> wasm-in-wasm</a></li><li class="chapter-item expanded "><a href="006.DOM.html"><strong aria-hidden="true">3.6.</strong> DOM</a></li><li class="chapter-item expanded "><a href="007.closures.html"><strong aria-hidden="true">3.7.</strong> closures</a></li><li class="chapter-item expanded "><a href="008.performance.html"><strong aria-hidden="true">3.8.</strong> performance</a></li><li class="chapter-item expanded "><a href="009.fetch.html"><strong aria-hidden="true">3.9.</strong> fetch</a></li><li class="chapter-item expanded "><a href="010.weather_report.html"><strong aria-hidden="true">3.10.</strong> weather_report</a></li><li class="chapter-item expanded "><a href="011.canvas.html"><strong aria-hidden="true">3.11.</strong> canvas</a></li><li class="chapter-item expanded "><a href="012.julia_set.html"><strong aria-hidden="true">3.12.</strong> julia_set</a></li><li class="chapter-item expanded "><a href="013.web_audio.html"><strong aria-hidden="true">3.13.</strong> web_audio</a></li><li class="chapter-item expanded "><a href="014.webgl.html"><strong aria-hidden="true">3.14.</strong> webgl</a></li><li class="chapter-item expanded "><a href="015.websockets.html"><strong aria-hidden="true">3.15.</strong> websockets</a></li><li class="chapter-item expanded "><a href="016.webrtc_datachannel.html"><strong aria-hidden="true">3.16.</strong> webrtc_datachannel</a></li><li class="chapter-item expanded "><a href="017.request-animation-frame.html"><strong aria-hidden="true">3.17.</strong> request-animation-frame</a></li><li class="chapter-item expanded "><a href="paint.html"><strong aria-hidden="true">3.18.</strong> paint</a></li><li class="chapter-item expanded "><a href="019.wasm-in-web-worker.html"><strong aria-hidden="true">3.19.</strong> wasm-in-web-worker</a></li><li class="chapter-item expanded "><a href="020.raytrace-parallel.html"><strong aria-hidden="true">3.20.</strong> raytrace-parallel</a></li><li class="chapter-item expanded "><a href="021.wasm-audio-worklet.html"><strong aria-hidden="true">3.21.</strong> wasm-audio-worklet</a></li><li class="chapter-item expanded "><a href="022.todomvc.html"><strong aria-hidden="true">3.22.</strong> todomvc</a></li></ol></li><li class="chapter-item expanded "><a href="canvas2d_game.html"><strong aria-hidden="true">4.</strong> Canvas 2d game</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dummy.html"><strong aria-hidden="true">4.1.</strong> dummy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<div class="prevnext"><div class="button left">[<-- console.log](./002_console_log.html)</div>
+<div class="button right">[Working with the char type -->](./004_working_with_the_char_type.html)</div></div>
+<main>
+<h1 id="importing-non-browser-js"><a class="header" href="#importing-non-browser-js">Importing non-browser JS</a></h1>
+<p><em>The <code>#[wasm_bindgen]</code> attribute can be used on <code>extern "C" { .. }</code> blocks to import functionality from JS. This is how the <code>js-sys</code> and the <code>web-sys</code> crates are built, but you can also use it in your own crate!</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/import_js">wasm-bindgen example</a>{target="_blank"}</p>
+<blockquote>
+<p>PART I. Make it run</p>
+</blockquote>
+<h2 id="converting-examples-in-7-steps"><a class="header" href="#converting-examples-in-7-steps">Converting Examples in 7 steps</a></h2>
+<h4 id="1-make-the-file-structure"><a class="header" href="#1-make-the-file-structure">1. Make the file structure</a></h4>
+<pre><code class="language-sh">cargo new import_js --lib
+cd import_js
+mkdir -p www/html www/js
+</code></pre>
+<h4 id="2-edit-cargotoml-add-crate-type-and-wasm-bindgen-dependency"><a class="header" href="#2-edit-cargotoml-add-crate-type-and-wasm-bindgen-dependency">2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency</a></h4>
+<pre><code class="language-toml">[package]
+name = "import_js"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+
+[dependencies]
+wasm-bindgen = "0.2.88"
+
+</code></pre>
+<h4 id="3-get-the-code"><a class="header" href="#3-get-the-code">3. Get the code</a></h4>
+<p><em>Cut and paste</em> the import-js example from github <a href="https://github.com/rustwasm/wasm-bindgen/blob/main/examples/import_js/crate/src/lib.rs">src/lib.rs</a></p>
+<p>or the rust code in</p>
+<p><a href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html">wasm-bindgen: import-js</a></p>
+<p>Note:</p>
+<pre><code>We need to modify `#[wasm_bindgen(module = "/defined-in-js.js")]`
+as we made the commitment not to mix Rust and web code.
+Our version will have `defined-in-js.js` in the `js` directory
+with our `index.js` file. 
+</code></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[wasm_bindgen(module = "/www/js/defined-in-js.js")]
+...
+<span class="boring">}</span></code></pre></pre>
+<p>So the full code is :</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+
+use wasm_bindgen::prelude::*;
+
+// our webserver's  root is www
+#[wasm_bindgen(module = "/www/js/defined-in-js.js")]
+extern "C" {
+    fn name() -&gt; String;
+
+    type MyClass;
+
+    #[wasm_bindgen(constructor)]
+    fn new() -&gt; MyClass;
+
+    #[wasm_bindgen(method, getter)]
+    fn number(this: &amp;MyClass) -&gt; u32;
+    #[wasm_bindgen(method, setter)]
+    fn set_number(this: &amp;MyClass, number: u32) -&gt; MyClass;
+    #[wasm_bindgen(method)]
+    fn render(this: &amp;MyClass) -&gt; String;
+}
+
+// lifted from the `console_log` example
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &amp;str);
+}
+
+#[wasm_bindgen(start)]
+fn run() {
+    log(&amp;format!("Hello from {}!", name())); // should output "Hello from Rust!"
+
+    let x = MyClass::new();
+    assert_eq!(x.number(), 42);
+    x.set_number(10);
+    log(&amp;x.render());
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="4-create-the-index-file-at-wwwhtmlindexhtml"><a class="header" href="#4-create-the-index-file-at-wwwhtmlindexhtml">4. create the index file at <code>www/html/index.html</code>:</a></h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Wasm no NPM no Webpack&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+
+  &lt;script type="module" src="../js/index.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4 id="5-the-first-js-file-is-indexjs"><a class="header" href="#5-the-first-js-file-is-indexjs">5. The first js file is <code>index.js</code></a></h4>
+<pre><code class="language-javascript">// www/js/index.js
+
+import init from "../pkg/import_js.js";
+
+async function run() {
+    const wasm = await init();
+}
+
+run();
+</code></pre>
+<p>Our second javascript file <code>defined-in-js.js</code></p>
+<pre><code class="language-js">// www/js/defined-in-js.js
+
+export function name() {
+    return 'Rust';
+}
+
+export class MyClass {
+    constructor() {
+        this._number = 42;
+    }
+
+    get number() {
+        return this._number;
+    }
+
+    set number(n) {
+        return this._number = n;
+    }
+
+    render() {
+        return `My number is: ${this.number}`;
+    }
+}
+
+</code></pre>
+<h4 id="6-build-it"><a class="header" href="#6-build-it">6. build it</a></h4>
+<pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
+</code></pre>
+<h4 id="7-serve-it"><a class="header" href="#7-serve-it">7. serve it</a></h4>
+<pre><code class="language-sh">http www
+</code></pre>
+<p>open <code>index.html</code></p>
+<pre><code class="language-sh">firefox http://localhost:8000/html/
+</code></pre>
+<p>Open the browser at http://127.0.0.1:8000/html/<br />
+and <code>ctrl-shift + I</code> to see the output in the browsers console log</p>
+<p><img src="./pix/import_js.png" alt="importing non-browser Js" /></p>
+<hr />
+<blockquote>
+<p>PART II. Understand the Code</p>
+</blockquote>
+<h2 id="understand-the-code"><a class="header" href="#understand-the-code">Understand the Code</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// our webserver's  root is www
+#[wasm_bindgen(module = "/www/js/defined-in-js.js")]
+extern "C" {
+    fn name() -&gt; String;
+
+    type MyClass;
+
+    #[wasm_bindgen(constructor)]
+    fn new() -&gt; MyClass;
+
+    #[wasm_bindgen(method, getter)]
+    fn number(this: &amp;MyClass) -&gt; u32;
+    #[wasm_bindgen(method, setter)]
+    fn set_number(this: &amp;MyClass, number: u32) -&gt; MyClass;
+    #[wasm_bindgen(method)]
+    fn render(this: &amp;MyClass) -&gt; String;
+}
+<span class="boring">}</span></code></pre></pre>
+<p>We made the commitment not to mix Rust and web code.<br />
+As such, <code>defined-in-js.js</code> is in the <code>js</code> directory with our <code>index.js</code>file.</p>
+<p>The original code looks for this file next to the Cargo.toml file at the root directory with</p>
+<pre><code>#[wasm_bindgen(module = "/defined-in-js.js")]
+</code></pre>
+<p>We point it to <code>www/js/</code> like this</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[wasm_bindgen(module = "/www/js/defined-in-js.js")]
+extern "C" {
+   ...
+}
+...
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>
+<p><code>module = "..."</code><br />
+<a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/module.html">wasm-bindgen docs: attributes</a>{target="_blank"}</p>
+</li>
+<li>
+<p>"<em>The #[wasm_bindgen] attribute can be used on extern "C" { .. } blocks to import functionality from JS.</em>"<br />
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/import-js.html">wasm-bindgen docs: Importing non-browser JS</a>{target="_blank"}</p>
+</li>
+<li>
+<p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-rust-exports/constructor.html">wasm-bindgen docs: constructor</a>{target="_blank"}</p>
+</li>
+<li>
+<p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/method.html">wasm-bindgen docs: method</a>{target="_blank"}</p>
+</li>
+<li>
+<p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/getter-and-setter.html">wasm-bindgen docs: getter-and-setter</a>{target="_blank"}</p>
+</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// lifted from the `console_log` example
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &amp;str);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Here we are making use of Javascript's console.log() method.</p>
+<p><a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-js-imports/js_namespace.html">wasm-bindgen docs: js_namespace</a>{target="_blank"}</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[wasm_bindgen(start)]
+fn run() {
+    log(&amp;format!("Hello from {}!", name())); // should output "Hello from Rust!"
+
+    let x = MyClass::new();
+    assert_eq!(x.number(), 42);
+    x.set_number(10);
+    log(&amp;x.render());
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>The start function here should be started up automatically when the wasm module is loaded.<br />
+<a href="https://rustwasm.github.io/wasm-bindgen/reference/attributes/on-rust-exports/start.html">wasm-bindgen docs: start</a>{target="_blank"}</li>
+</ul>
+<h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
+<div class="prevnext"><div class="button left">[<-- console.log](./002_console_log.html)</div>
+<div class="button right">[Working with the char type -->](./004_working_with_the_char_type.html)</div></div>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">hello_world</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="002.console_log.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="004.working_with_the_char_type.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="002.console_log.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="004.working_with_the_char_type.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

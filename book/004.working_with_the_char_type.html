@@ -1,0 +1,744 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>working_with_the_char_type</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="wasm-bindgen_guide.html"><strong aria-hidden="true">3.</strong> from the wasm-bindgen guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.hello_world.html"><strong aria-hidden="true">3.1.</strong> hello_world</a></li><li class="chapter-item expanded "><a href="002.console_log.html"><strong aria-hidden="true">3.2.</strong> console_log</a></li><li class="chapter-item expanded "><a href="003.importing_non-browser_JS.html"><strong aria-hidden="true">3.3.</strong> importing_non-browser_JS</a></li><li class="chapter-item expanded "><a href="004.working_with_the_char_type.html" class="active"><strong aria-hidden="true">3.4.</strong> working_with_the_char_type</a></li><li class="chapter-item expanded "><a href="005.wasm-in-wasm.html"><strong aria-hidden="true">3.5.</strong> wasm-in-wasm</a></li><li class="chapter-item expanded "><a href="006.DOM.html"><strong aria-hidden="true">3.6.</strong> DOM</a></li><li class="chapter-item expanded "><a href="007.closures.html"><strong aria-hidden="true">3.7.</strong> closures</a></li><li class="chapter-item expanded "><a href="008.performance.html"><strong aria-hidden="true">3.8.</strong> performance</a></li><li class="chapter-item expanded "><a href="009.fetch.html"><strong aria-hidden="true">3.9.</strong> fetch</a></li><li class="chapter-item expanded "><a href="010.weather_report.html"><strong aria-hidden="true">3.10.</strong> weather_report</a></li><li class="chapter-item expanded "><a href="011.canvas.html"><strong aria-hidden="true">3.11.</strong> canvas</a></li><li class="chapter-item expanded "><a href="012.julia_set.html"><strong aria-hidden="true">3.12.</strong> julia_set</a></li><li class="chapter-item expanded "><a href="013.web_audio.html"><strong aria-hidden="true">3.13.</strong> web_audio</a></li><li class="chapter-item expanded "><a href="014.webgl.html"><strong aria-hidden="true">3.14.</strong> webgl</a></li><li class="chapter-item expanded "><a href="015.websockets.html"><strong aria-hidden="true">3.15.</strong> websockets</a></li><li class="chapter-item expanded "><a href="016.webrtc_datachannel.html"><strong aria-hidden="true">3.16.</strong> webrtc_datachannel</a></li><li class="chapter-item expanded "><a href="017.request-animation-frame.html"><strong aria-hidden="true">3.17.</strong> request-animation-frame</a></li><li class="chapter-item expanded "><a href="paint.html"><strong aria-hidden="true">3.18.</strong> paint</a></li><li class="chapter-item expanded "><a href="019.wasm-in-web-worker.html"><strong aria-hidden="true">3.19.</strong> wasm-in-web-worker</a></li><li class="chapter-item expanded "><a href="020.raytrace-parallel.html"><strong aria-hidden="true">3.20.</strong> raytrace-parallel</a></li><li class="chapter-item expanded "><a href="021.wasm-audio-worklet.html"><strong aria-hidden="true">3.21.</strong> wasm-audio-worklet</a></li><li class="chapter-item expanded "><a href="022.todomvc.html"><strong aria-hidden="true">3.22.</strong> todomvc</a></li></ol></li><li class="chapter-item expanded "><a href="canvas2d_game.html"><strong aria-hidden="true">4.</strong> Canvas 2d game</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dummy.html"><strong aria-hidden="true">4.1.</strong> dummy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<main>
+<div class="prevnext"><div class="button left">[<-- Importing non-browser JS ](./003_importing_non-browser_JS.html)</div>
+<div class="button right">[js-sys: WebAssembly in WebAssembly -->](./005_wasm-in-wasm.html)</div></div>
+<h1 id="working-with-the-char-type"><a class="header" href="#working-with-the-char-type">Working with the char type</a></h1>
+<p><em>The #[wasm_bindgen] macro will convert the rust char type to a single code-point js string, and this example shows how to work with this.</em></p>
+<aside>
+Codepoint  
+    An unique number for each Unicode character. It is rappresented by a collection of 1-6 uint8 elements for UTF-8, 1-2 uint16 elements for UTF-16, 1 uint32 element for UCS4, 1 uint8 element for ASCII, or something else.
+[MDN web doc](https://devdoc.net/web/developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays/StringView.html#glossary_codepoint)
+</aside>
+<p><em>Opening this example should display a single counter with a random character for it's key and 0 for its count. You can click the + button to increase a counter's count. By clicking on the "add counter" button you should see a new counter added to the list with a different random character for it's key.</em></p>
+<p><em>Under the hood javascript is choosing a random character from an Array of characters and passing that to the rust Counter struct's constructor so the character you are seeing on the page has made the full round trip from js to rust and back to js.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/char.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/char">wasm-bindgen example</a>{target="_blank"}</p>
+<blockquote>
+<p>PART I. Make it run</p>
+</blockquote>
+<h2 id="converting-examples-in-7-steps"><a class="header" href="#converting-examples-in-7-steps">Converting Examples in 7 steps</a></h2>
+<h4 id="1-make-the-file-structure"><a class="header" href="#1-make-the-file-structure">1. Make the file structure</a></h4>
+<pre><code class="language-sh">cargo new char --lib
+cd char
+mkdir -p www/html www/js
+</code></pre>
+<h4 id="2-edit-cargotoml-add-crate-type-and-wasm-bindgen-dependency"><a class="header" href="#2-edit-cargotoml-add-crate-type-and-wasm-bindgen-dependency">2. Edit Cargo.toml, add crate-type and wasm-bindgen dependency</a></h4>
+<pre><code class="language-toml">[package]
+name = "char"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+# See more keys and their definitions at 
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wasm-bindgen = "0.2.88"
+</code></pre>
+<h4 id="3-get-the-code"><a class="header" href="#3-get-the-code">3. Get the code</a></h4>
+<p><em>Cut and paste</em> the import-js example from github <a href="https://github.com/rustwasm/wasm-bindgen/blob/main/examples/char/src/lib.rs">src/lib.rs</a></p>
+<p>or the rust code in</p>
+<p><a href="https://rustwasm.github.io/wasm-bindgen/examples/char.html">wasm-bindgen: char</a></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+use wasm_bindgen::prelude::*;
+
+// lifted from the `console_log` example
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &amp;str);
+}
+
+#[derive(Debug)]
+#[wasm_bindgen]
+pub struct Counter {
+    key: char,
+    count: i32,
+}
+
+#[wasm_bindgen]
+impl Counter {
+    pub fn new(key: char, count: i32) -&gt; Counter {
+        log(&amp;format!("Counter::new({}, {})", key, count));
+        Counter { key, count }
+    }
+
+    pub fn key(&amp;self) -&gt; char {
+        log("Counter.key()");
+        self.key
+    }
+
+    pub fn count(&amp;self) -&gt; i32 {
+        log("Counter.count");
+        self.count
+    }
+
+    pub fn increment(&amp;mut self) {
+        log("Counter.increment");
+        self.count += 1;
+    }
+
+    pub fn update_key(&amp;mut self, key: char) {
+        self.key = key;
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Note we have the wasm_bindgen macro immediatly before our
+struct declaration.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Debug)]
+#[wasm_bindgen]
+pub struct Counter {
+    key: char,
+    count: i32,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Having it placed as in the official example  resulted in Counter not being pick up
+and as a result not available in the glue code <code>pkg/char.js</code> which resulted in
+<code>SyntaxError: ambiguous indirect export: Counter</code> in the browser.</p>
+<pre><code>// DONT DO THIS
+
+#[wasm_bindgen]    &lt;--- wrong place
+#[derive(Debug)]
+pub struct Counter {
+    key: char,
+    count: i32,
+}
+</code></pre>
+<h4 id="4-create-the-index-file-at-wwwhtmlindexhtml"><a class="header" href="#4-create-the-index-file-at-wwwhtmlindexhtml">4. create the index file at <code>www/html/index.html</code>:</a></h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Counter nobundle&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../css/style.css"&gt;&lt;/head&gt;
+&lt;body&gt;
+   &lt;button id="add-counter" type="button"&gt;add counter&lt;/button&gt;
+    &lt;div id="container"&gt;
+
+    &lt;/div&gt;
+    &lt;script type="module" src="../js/index.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Let's put the stylesheet in <code>www/css/style.css</code></p>
+<pre><code class="language-css">* {
+    font-family: sans-serif;
+    font-size: 16pt;
+}
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 0;
+}
+button {
+    padding: 5px 10px;
+    border: none;
+    background: slategrey;
+    margin: 10px auto;
+    color: white;
+}
+body {
+    width: 400px;
+    margin: auto;
+}
+#container,
+.counter {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+.counter {
+    margin-bottom: 10px;
+    background: steelblue;
+    color: white;
+    align-items: center;
+    width: 100%;
+}
+.field {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    width: 100%;
+}
+</code></pre>
+<h4 id="5-js-files"><a class="header" href="#5-js-files">5. js files</a></h4>
+<h5 id="51-get-char-listjs"><a class="header" href="#51-get-char-listjs">5.1 Get <code>char-list.js</code></a></h5>
+<p><em>Cut &amp; paste</em>  <a href="https://github.com/rustwasm/wasm-bindgen/blob/main/examples/char/chars-list.js">char-list</a>{target="_blank"} and save as <code>char-list.js</code> in <code>www/js</code></p>
+<pre><code class="language-js">export let chars = [
+    '!','#','$','%','&amp;','\'','(',')','*','+',',',
+    '-','.','/','0','1','2','3','4','5','6','7',
+    '8','9',':',';','&lt;','=','&gt;','?','@','A','B',
+    'C','D','E','F','G','H','I','J','K','L','M',
+    'N','O','P','Q','R','S','T','U','V','W','X',
+    'Y','Z','[',']','^','_','`','a','b','c',
+    'd','e','f','g','h','i','j','k','l','m','n',
+    'o','p','q','r','s','t','u','v','w','x','y',
+    'z','{','|','}','~',' ','¡','¢','£','¤','¥',
+    '¦','§','¨','©','ª','«','¬','®','¯','°',
+    '±','²','³','´','µ','¶','·','¸','¹','º','»',
+    '¼','½','¾','¿','À','Á','Â','Ã','Ä','Å','Æ',
+    'Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Ñ',
+    'Ò','Ó','Ô','Õ','Ö','×','Ø','Ù','Ú','Û','Ü',
+    'Ý','Þ','ß','à','á','â','ã','ä','å','æ','ç',
+    'è','é','ê','ë','ì','í','î','ï','ð','ñ','ò',
+    'ó','ô','õ','ö','÷','ø','ù','ú','û','ü','ý',
+    'þ','ÿ','Ā','ā','Ă','ă','Ą','ą','Ć','ć','Ĉ',
+    'ĉ','Ċ','ċ','Č','č','Ď','ď','Đ','đ','Ē','ē',
+    'Ĕ','ĕ','Ė','ė','Ę','ę','Ě','ě','Ĝ','ĝ','Ğ',
+    'ğ','Ġ','ġ','Ģ','ģ','Ĥ','ĥ','Ħ','ħ','Ĩ','ĩ',
+    'Ī','ī','Ĭ','ĭ','Į','į','İ','ı','Ĳ','ĳ','Ĵ',
+    'ĵ','Ķ','ķ','ĸ','Ĺ','ĺ','Ļ','ļ','Ľ','ľ','Ŀ',
+    'ŀ','Ł','ł','Ń','ń','Ņ','ņ','Ň','ň','ŉ','Ŋ',
+    'ŋ','Ō','ō','Ŏ','ŏ','Ő','ő','Œ','œ','Ŕ','ŕ',
+    'Ŗ','ŗ','Ř','ř','Ś','ś','Ŝ','ŝ','Ş','ş','Š',
+    'š','Ţ','ţ','Ť','ť','Ŧ','ŧ','Ũ','ũ','Ū','ū',
+    'Ŭ','ŭ','Ů','ů','Ű','ű','Ų','ų','Ŵ','ŵ','Ŷ',
+    'ŷ','Ÿ','Ź','ź','Ż','ż','Ž','ž','ſ','ƀ','Ɓ',
+    'Ƃ','ƃ','Ƅ','ƅ','Ɔ','Ƈ','ƈ','Ɖ','Ɗ','Ƌ','ƌ',
+    'ƍ','Ǝ','Ə','Ɛ','Ƒ','ƒ','Ɠ','Ɣ','ƕ','Ɩ','Ɨ',
+    'Ƙ','ƙ','ƚ','ƛ','Ɯ','Ɲ','ƞ','Ɵ','Ơ','ơ','Ƣ',
+    'ƣ','Ƥ','ƥ','Ʀ','Ƨ','ƨ','Ʃ','ƪ','ƫ','Ƭ','ƭ',
+    'Ʈ','Ư','ư','Ʊ','Ʋ','Ƴ','ƴ','Ƶ','ƶ','Ʒ','Ƹ',
+    'ƹ','ƺ','ƻ','Ƽ','ƽ','ƾ','ƿ','ǀ','ǁ','ǂ','ǃ',
+    'Ǆ','ǅ','ǆ','Ǉ','ǈ','ǉ','Ǌ','ǋ','ǌ','Ǎ','ǎ',
+    'Ǐ','ǐ','Ǒ','ǒ','Ǔ','ǔ','Ǖ','ǖ','Ǘ','ǘ','Ǚ',
+    'ǚ','Ǜ','ǜ','ǝ','Ǟ','ǟ','Ǡ','ǡ','Ǣ','ǣ','Ǥ',
+    'ǥ','Ǧ','ǧ','Ǩ','ǩ','Ǫ','ǫ','Ǭ','ǭ','Ǯ','ǯ',
+    'ǰ','Ǳ','ǲ','ǳ','Ǵ','ǵ','Ƕ','Ƿ','Ǹ','ǹ','Ǻ',
+    'ǻ','Ǽ','ǽ','Ǿ','ǿ','Ȁ','ȁ','Ȃ','ȃ','Ȅ','ȅ',
+    'Ȇ','ȇ','Ȉ','ȉ','Ȋ','ȋ','Ȍ','ȍ','Ȏ','ȏ','Ȑ',
+    'ȑ','Ȓ','ȓ','Ȕ','ȕ','Ȗ','ȗ','Ș','ș','Ț','ț',
+    'Ȝ','ȝ','Ȟ','ȟ','Ƞ','ȡ','Ȣ','ȣ','Ȥ','ȥ','Ȧ',
+    'ȧ','Ȩ','ȩ','Ȫ','ȫ','Ȭ','ȭ','Ȯ','ȯ','Ȱ','ȱ',
+    'Ȳ','ȳ','ȴ','ȵ','ȶ','ȷ','ȸ','ȹ','Ⱥ','Ȼ','ȼ',
+    'Ƚ','Ⱦ','ȿ','ɀ','Ɂ','ɂ','Ƀ','Ʉ','Ʌ','Ɇ','ɇ',
+    'Ɉ','ɉ','Ɋ','ɋ','Ɍ','ɍ','Ɏ','ɏ','ɐ','ɑ','ɒ',
+    'ɓ','ɔ','ɕ','ɖ','ɗ','ɘ','ə','ɚ','ɛ','ɜ','ɝ',
+    'ɞ','ɟ','ɠ','ɡ','ɢ','ɣ','ɤ','ɥ','ɦ','ɧ','ɨ',
+    'ɩ','ɪ','ɫ','ɬ','ɭ','ɮ','ɯ','ɰ','ɱ','ɲ','ɳ',
+    'ɴ','ɵ','ɶ','ɷ','ɸ','ɹ','ɺ','ɻ','ɼ','ɽ','ɾ',
+    'ɿ','ʀ','ʁ','ʂ','ʃ','ʄ','ʅ','ʆ','ʇ','ʈ','ʉ',
+    'ʊ','ʋ','ʌ','ʍ','ʎ','ʏ','ʐ','ʑ','ʒ','ʓ','ʔ',
+    'ʕ','ʖ','ʗ','ʘ','ʙ','ʚ','ʛ','ʜ','ʝ','ʞ','ʟ',
+    'ʠ','ʡ','ʢ','ʣ','ʤ','ʥ','ʦ','ʧ','ʨ','ʩ','ʪ',
+    'ʫ','ʬ','ʭ','ʮ','ʯ','Ͳ','ͳ','ʹ','͵','Ͷ','ͷ',
+    'ͺ','ͻ','ͼ','ͽ',';','Ϳ','΄','΅','Ά','·','Έ','Ή',
+    'Ί','Ό','Ύ','Ώ',
+    'ΐ','Α','Β','Γ','Δ','Ε','Ζ','Η','Θ','Ι','Κ',
+    'Λ','Μ','Ν','Ξ','Ο','Π','Ρ','Σ','Τ','Υ','Φ',
+    'Χ','Ψ','Ω','Ϊ','Ϋ','ά','έ','ή','ί','ΰ','α',
+    'β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ',
+    'ν','ξ','ο','π','ρ','ς','σ','τ','υ','φ','χ',
+    'ψ','ω','ϊ','ϋ','ό','ύ','ώ','Ϗ','ϐ','ϑ','ϒ',
+    'ϓ','ϔ','ϕ','ϖ','ϗ','Ϙ','ϙ','Ϛ','ϛ','Ϝ','ϝ',
+    'Ϟ','ϟ','Ϡ','ϡ','Ϣ','ϣ','Ϥ','ϥ','Ϧ','ϧ','Ϩ',
+    'ϩ','Ϫ','ϫ','Ϭ','ϭ','Ϯ','ϯ','ϰ','ϱ','ϲ','ϳ',
+    'Օ','Ֆ','🕧','🕨','🕩','🕪','🕫','🕬','🕭','🕮',
+    '🕯','🕰','🕱','🕲','🕳','🕴','🕵','🕶','🕷','🕸',
+    '🕹','🕺','🕻','🕼','🕽','🕾','🕿','🖀','🖁','🖂',
+    '🖃','🖄','🖅','🖆','🖇','🖈','🖉','🖊','🖋',
+    '🖌','🖍','🖎','🖏','🖐','🖑','🖒','🖓','🖔','🖕',
+    '🖖','🖗','🖘','🖙','🖚','🖛','🖜','🖝','🖞','🖟',
+    '🖠','🖡','🖢','🖣','🖤','🖥','🖦','🖧','🖨','🖩',
+    '🖪','🖫','🖬','🖭','🖮','🖯','🖰','🖱','🖲','🖳',
+    '🖴','🖵','🖶','🖷','🖸','🖹','🖺','🖻','🖼','🖽',
+    '🖾','🖿','🗀','🗁','🗂','🗃','🗄','🗅','🗆','🗇',
+    '🗈','🗉','🗊','🗋','🗌','🗍','🗎','🗏','🗐','🗑','🗒',
+    '🗓','🗔','🗕','🗖','🗗','🗘','🗙','🗚','🗛','🗜',
+    '🗝','🗞','🗟','🗠','🗡','🗢','🗣','🗤','🗥','🗦',
+    '🗧','🗨','🗩','🗪','🗫','🗬','🗭','🗮','🗯','🗰',
+    '🗱','🗲','🗳','🗴','🗵','🗶','🗷','🗸','🗹','🗺',
+    '🗻','🗼','🗽','🗾','🗿','😀'];
+
+
+</code></pre>
+<h5 id="52-indexjs-some-modification-required"><a class="header" href="#52-indexjs-some-modification-required">5.2 <code>index.js</code>: Some modification required</a></h5>
+<p>Cut and paste <a href="https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/char/index.js">the code</a>{target="_blank"}  to index.js.</p>
+<h5 id="5521-imports"><a class="header" href="#5521-imports">5.5.2.1 imports</a></h5>
+<p>This</p>
+<pre><code>/* eslint-disable no-unused-vars */
+import { chars } from './chars-list.js';
+let imp = import('./pkg');
+let mod;
+</code></pre>
+<p>becomes</p>
+<pre><code class="language-js">// www/js/index.js
+import init, { Counter }  from "../pkg/char.js";
+import { chars } from './chars-list.js';
+</code></pre>
+<p>We don't need the <code>imp</code> as we get our wasm code from <code>init()</code>
+and we don't need <code>mod</code> since we import <code>Counter</code> from the glue code.</p>
+<p>Finally this:</p>
+<pre><code class="language-js">let counters = [];
+imp
+  .then(wasm =&gt; {
+      mod = wasm;
+      addCounter();
+      let b = document.getElementById('add-counter');
+      if (!b) throw new Error('Unable to find #add-counter');
+      b.addEventListener('click', ev =&gt; addCounter());
+  })
+  .catch(console.error);
+
+</code></pre>
+<p>becomes this</p>
+<pre><code class="language-js">let counters = [];
+
+async function run() {
+    const wasm = await init();
+           
+    addCounter();
+    let b = document.getElementById('add-counter');
+    alert("b");
+    if (!b) throw new Error('Unable to find #add-counter');
+    b.addEventListener('click', ev =&gt; addCounter());
+}//^-- async run
+
+run();
+
+
+</code></pre>
+<p>And <code>Counter</code> is directly accessible by the other functions so we drop the <code>mod.Counter</code></p>
+<pre><code class="language-js">function addCounter() {
+    let ctr = Counter.new(randomChar(), 0);
+</code></pre>
+<p>So the final code is:</p>
+<pre><code class="language-js">// www/js/index.js
+import init, { Counter }  from "../pkg/char.js";
+import { chars } from './chars-list.js';
+
+let counters = [];
+
+async function run() {
+    const wasm = await init();
+           
+    addCounter();
+    let b = document.getElementById('add-counter');
+    alert("b");
+    if (!b) throw new Error('Unable to find #add-counter');
+    b.addEventListener('click', ev =&gt; addCounter());
+    
+
+}//^-- async run
+
+run();
+
+
+function addCounter() {
+    let ctr = Counter.new(randomChar(), 0);
+    counters.push(ctr);
+    update();
+    console.log("in addCounter");
+}
+
+function update() {
+    let container = document.getElementById('container');
+    if (!container) throw new Error('Unable to find #container in dom');
+    while (container.hasChildNodes()) {
+        if (container.lastChild.id == 'add-counter') break;
+        container.removeChild(container.lastChild);
+    }
+    for (var i = 0; i &lt; counters.length; i++) {
+        let counter = counters[i];
+        container.appendChild(newCounter(counter.key(), counter.count(), ev =&gt; {
+            counter.increment();
+            update();
+        }));
+    }
+}
+
+function randomChar() {
+    console.log('randomChar');
+    let idx = Math.floor(Math.random() * (chars.length - 1));
+    console.log('index', idx);
+    let ret = chars.splice(idx, 1)[0];
+    console.log('char', ret);
+    return ret;
+}
+
+function newCounter(key, value, cb) {
+    let container = document.createElement('div');
+    container.setAttribute('class', 'counter');
+    let title = document.createElement('h1');
+    title.appendChild(document.createTextNode('Counter ' + key));
+    container.appendChild(title);
+    container.appendChild(newField('Count', value));
+    let plus = document.createElement('button');
+    plus.setAttribute('type', 'button');
+    plus.setAttribute('class', 'plus-button');
+    plus.appendChild(document.createTextNode('+'));
+    plus.addEventListener('click', cb);
+    container.appendChild(plus);
+    return container;
+}
+
+function newField(key, value) {
+    let ret = document.createElement('div');
+    ret.setAttribute('class', 'field');
+    let name = document.createElement('span');
+    name.setAttribute('class', 'name');
+    name.appendChild(document.createTextNode(key));
+    ret.appendChild(name);
+    let val = document.createElement('span');
+    val.setAttribute('class', 'value');
+    val.appendChild(document.createTextNode(value));
+    ret.appendChild(val);
+    return ret;
+}
+</code></pre>
+<h4 id="6-build-it"><a class="header" href="#6-build-it">6. build it</a></h4>
+<pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
+</code></pre>
+<h4 id="7-serve-it"><a class="header" href="#7-serve-it">7. serve it</a></h4>
+<pre><code class="language-sh">http www
+</code></pre>
+<p>open <code>index.html</code></p>
+<pre><code class="language-sh">firefox http://localhost:8000/html/
+</code></pre>
+<p><img src="./pix/Counter.png" alt="working with the char type" /></p>
+<hr />
+<blockquote>
+<p>PART II. Understand the Code</p>
+</blockquote>
+<h2 id="understand-the-code"><a class="header" href="#understand-the-code">Understand the Code</a></h2>
+<ul>
+<li>#[wasm_bindgen]</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+
+#[wasm_bindgen]
+pub struct Counter {
+    key: char,
+    count: i32,
+}
+
+#[wasm_bindgen]
+impl Counter {
+    pub fn new(key: char, count: i32) -&gt; Counter {
+        log(&amp;format!("Counter::new({}, {})", key, count));
+        Counter { key, count }
+    }
+
+...
+
+<span class="boring">}</span></code></pre></pre>
+<p><code>#[wasm_bindgen]</code> makes it possible to use a public Counter &amp; public new() from Javascript</p>
+<pre><code class="language-js">// www/js/index.js
+
+import init, { Counter }  from "../pkg/char.js";
+
+// ...
+
+function addCounter() {
+    let ctr = Counter.new(randomChar(), 0);
+    counters.push(ctr);
+    update();
+    console.log("in addCounter");
+}
+</code></pre>
+<ul>
+<li>async function</li>
+</ul>
+<p><em>The async function declaration creates a binding of a new async function to a given name. The await keyword is permitted within the function body, enabling asynchronous, promise-based behavior to be written in a cleaner style and avoiding the need to explicitly configure promise chains.</em> _ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">MDN: async function</a>{target="_blank"}</p>
+<ul>
+<li>await</li>
+</ul>
+<p><em>Async functions can contain zero or more await expressions. Await expressions make promise-returning functions behave as though they're synchronous by suspending execution until the returned promise is fulfilled or rejected. The resolved value of the promise is treated as the return value of the await expression.</em> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function#description">MDN: async function</a>{target="_blank"}</p>
+<pre><code class="language-js">async function run() {
+    const wasm = await init();
+           
+    addCounter();
+    let b = document.getElementById('add-counter');
+    alert("b");
+    if (!b) throw new Error('Unable to find #add-counter');
+    b.addEventListener('click', ev =&gt; addCounter());
+    
+
+}//^-- async run
+
+run();
+
+</code></pre>
+<ul>
+<li>init()</li>
+</ul>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/issues/1559">wasm-bindgen:  Support init function without parameters #1559</a></p>
+<p>This issue opened by <em>ibaryshnikov</em> lead to our current <code>await init()</code></p>
+<p><em>When used without a bundler, there is a need to call init with a .wasm file name:</em></p>
+<pre><code class="language-js">await init('../pkg/my_project_bg.wasm');
+
+//
+
+await init('../pkg/another_project_bg.wasm');
+
+</code></pre>
+<p><em>Proposed Solution</em></p>
+<p><em>Make it possible to use</em></p>
+<pre><code class="language-js">await init();
+</code></pre>
+<p><em>which will default to path with generated .wasm file</em></p>
+<p><em>@ibaryshnikov mentioned this issue Jun 7, 2019</em><br />
+<em>added default module path inside init function when target is web #1579</em></p>
+<p><em>alexcrichton closed this as completed in #1579 on Jun 10, 2019</em></p>
+<h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
+<div class="prevnext"><div class="button left">[<-- Importing non-browser JS ](./003_importing_non-browser_JS.html)</div>
+<div class="button right">[js-sys: WebAssembly in WebAssembly -->](./005_wasm-in-wasm.html)</div></div>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+
+let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">hello_world</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="003.importing_non-browser_JS.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="005.wasm-in-wasm.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="003.importing_non-browser_JS.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="005.wasm-in-wasm.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,2361 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>todomvc</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="struct_tech_tut.html"><strong aria-hidden="true">1.</strong> hide_me</a></li><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">2.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="wasm-bindgen_guide.html"><strong aria-hidden="true">3.</strong> from the wasm-bindgen guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.hello_world.html"><strong aria-hidden="true">3.1.</strong> hello_world</a></li><li class="chapter-item expanded "><a href="002.console_log.html"><strong aria-hidden="true">3.2.</strong> console_log</a></li><li class="chapter-item expanded "><a href="003.importing_non-browser_JS.html"><strong aria-hidden="true">3.3.</strong> importing_non-browser_JS</a></li><li class="chapter-item expanded "><a href="004.working_with_the_char_type.html"><strong aria-hidden="true">3.4.</strong> working_with_the_char_type</a></li><li class="chapter-item expanded "><a href="005.wasm-in-wasm.html"><strong aria-hidden="true">3.5.</strong> wasm-in-wasm</a></li><li class="chapter-item expanded "><a href="006.DOM.html"><strong aria-hidden="true">3.6.</strong> DOM</a></li><li class="chapter-item expanded "><a href="007.closures.html"><strong aria-hidden="true">3.7.</strong> closures</a></li><li class="chapter-item expanded "><a href="008.performance.html"><strong aria-hidden="true">3.8.</strong> performance</a></li><li class="chapter-item expanded "><a href="009.fetch.html"><strong aria-hidden="true">3.9.</strong> fetch</a></li><li class="chapter-item expanded "><a href="010.weather_report.html"><strong aria-hidden="true">3.10.</strong> weather_report</a></li><li class="chapter-item expanded "><a href="011.canvas.html"><strong aria-hidden="true">3.11.</strong> canvas</a></li><li class="chapter-item expanded "><a href="012.julia_set.html"><strong aria-hidden="true">3.12.</strong> julia_set</a></li><li class="chapter-item expanded "><a href="013.web_audio.html"><strong aria-hidden="true">3.13.</strong> web_audio</a></li><li class="chapter-item expanded "><a href="014.webgl.html"><strong aria-hidden="true">3.14.</strong> webgl</a></li><li class="chapter-item expanded "><a href="015.websockets.html"><strong aria-hidden="true">3.15.</strong> websockets</a></li><li class="chapter-item expanded "><a href="016.webrtc_datachannel.html"><strong aria-hidden="true">3.16.</strong> webrtc_datachannel</a></li><li class="chapter-item expanded "><a href="017.request-animation-frame.html"><strong aria-hidden="true">3.17.</strong> request-animation-frame</a></li><li class="chapter-item expanded "><a href="paint.html"><strong aria-hidden="true">3.18.</strong> paint</a></li><li class="chapter-item expanded "><a href="019.wasm-in-web-worker.html"><strong aria-hidden="true">3.19.</strong> wasm-in-web-worker</a></li><li class="chapter-item expanded "><a href="020.raytrace-parallel.html"><strong aria-hidden="true">3.20.</strong> raytrace-parallel</a></li><li class="chapter-item expanded "><a href="021.wasm-audio-worklet.html"><strong aria-hidden="true">3.21.</strong> wasm-audio-worklet</a></li><li class="chapter-item expanded "><a href="022.todomvc.html" class="active"><strong aria-hidden="true">3.22.</strong> todomvc</a></li></ol></li><li class="chapter-item expanded "><a href="canvas2d_game.html"><strong aria-hidden="true">4.</strong> Canvas 2d game</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dummy.html"><strong aria-hidden="true">4.1.</strong> dummy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
+<p>Previous example: <a href="./019.wasm-in-web-worker.html"> <code>&lt;--</code> web-sys: Wasm in Web Worker</a></p>
+<main>
+<h2 id="todo-mvc"><a class="header" href="#todo-mvc">TODO MVC</a></h2>
+<p><em>wasm-bindgen and web-sys coded TODO MVC</p>
+<p>The code was rewritten from the ES6 version.</p>
+<p>The core differences are:</p>
+<pre><code>Having an Element wrapper that takes care of dyn and into refs in web-sys,  
+A Scheduler that allows Controller and View to communicate to each other by emulating something similar to the JS event loop.
+</code></pre>
+</em>  
+   _ [wasm-bindgen Guide](https://rustwasm.github.io/wasm-bindgen/examples/todomvc.html){target="_blank"}
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/todomvc">Parallel Raytracing</a>{target="_blank"}</p>
+<h3 id="building-the-demo"><a class="header" href="#building-the-demo">Building the demo</a></h3>
+<p><em>One of the major gotchas with threaded WebAssembly is that Rust does not ship a precompiled target (e.g. standard library) which has threading support enabled. This means that you'll need to recompile the standard library with the appropriate rustc flags, namely -C target-feature=+atomics,+bulk-memory,+mutable-globals. Note that this requires a nightly Rust toolchain.</em><br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
+<pre><code class="language-sh">cargo new todomvc --lib
+cd todomvc
+mkdir -p www/js www/html www/html/templates
+</code></pre>
+<ul>
+<li>Edit Cargo.toml</li>
+</ul>
+<pre><code class="language-toml">[lib]
+crate-type = ["cdylib"]
+
+[build-dependencies]
+askama = "0.10.0"
+
+[dependencies]
+js-sys = "0.3.66"
+wasm-bindgen = "0.2.89"
+askama = "0.10.0"
+console_error_panic_hook = "0.1.5"
+
+[dependencies.web-sys]
+version = "0.3.5"
+features = [
+  'console',
+  'CssStyleDeclaration',
+  'Document',
+  'DomStringMap',
+  'DomTokenList',
+  'Element',
+  'Event',
+  'EventTarget',
+  'HtmlBodyElement',
+  'HtmlElement',
+  'HtmlInputElement',
+  'KeyboardEvent',
+  'Location',
+  'Node',
+  'NodeList',
+  'Storage',
+  'Window',
+]
+</code></pre>
+<h3 id="the-code"><a class="header" href="#the-code">The code</a></h3>
+<ul>
+<li>index.html</li>
+</ul>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html;charset=utf-8" http-equiv="Content-Type"/&gt;
+    &lt;title&gt;web-sys Wasm • TodoMVC&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;section class="todoapp"&gt;
+      &lt;header class="header"&gt;
+        &lt;h1&gt;todos&lt;/h1&gt;
+        &lt;input class="new-todo" placeholder="What needs to be done?" autofocus&gt;
+      &lt;/header&gt;
+      &lt;section hidden class="main"&gt;
+        &lt;input id="toggle-all" class="toggle-all" type="checkbox"&gt;
+        &lt;label for="toggle-all"&gt;Mark all as complete&lt;/label&gt;
+        &lt;ul class="todo-list"&gt;&lt;/ul&gt;
+        &lt;footer class="footer"&gt;
+          &lt;span class="todo-count"&gt;&lt;/span&gt;
+          &lt;ul class="filters"&gt;
+            &lt;li&gt;
+              &lt;a href="#/" class="selected"&gt;All&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+            &lt;a href="#/active"&gt;Active&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+            &lt;a href="#/completed"&gt;Completed&lt;/a&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+          &lt;button class="clear-completed"&gt;Clear completed&lt;/button&gt;
+        &lt;/footer&gt;
+      &lt;/section&gt;
+    &lt;/section&gt;
+    &lt;footer class="info"&gt;
+      &lt;p&gt;Double-click to edit a todo&lt;/p&gt;
+      &lt;p&gt;Written by &lt;a href="http://twitter.com/KingstonTime/"&gt;Jonathan Kingston&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Part of &lt;a href="http://todomvc.com"&gt;TodoMVC&lt;/a&gt;&lt;/p&gt;
+    &lt;/footer&gt;
+
+    &lt;script type="module" src="../js/index.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>templates</li>
+</ul>
+<p>in <code>www/html/templates</code></p>
+<ul>
+<li>itemsLeft.html</li>
+</ul>
+<pre><code class="language-html">{{ active_todos }} item{% if active_todos &gt; 1 %}s{% endif %} left
+</code></pre>
+<ul>
+<li>row.html</li>
+</ul>
+<pre><code class="language-html">&lt;li data-id="{{ id }}"{% if completed %} class="completed"{% endif %}&gt;
+	&lt;div class="view"&gt;
+		&lt;input class="toggle" type="checkbox"{% if completed %} checked{% endif %}&gt;
+		&lt;label&gt;{{ title }}&lt;/label&gt;
+		&lt;button class="destroy"&gt;&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/li&gt;
+</code></pre>
+<ul>
+<li>index.js</li>
+</ul>
+<pre><code class="language-js">// For more comments about what's going on here, check out the `hello_world`
+// example
+const rust = import('./pkg');
+const css = import('./index.css');
+
+rust
+  .then(m =&gt; m.run())
+  .catch(console.error);
+
+
+</code></pre>
+<ul>
+<li>style.css</li>
+</ul>
+<pre><code class="language-css">html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	font-weight: inherit;
+	color: inherit;
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.4em;
+	background: #f5f5f5;
+	color: #4d4d4d;
+	min-width: 230px;
+	max-width: 550px;
+	margin: 0 auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-weight: 300;
+}
+
+:focus {
+	outline: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.todoapp {
+	background: #fff;
+	margin: 130px 0 40px 0;
+	position: relative;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.todoapp input::-webkit-input-placeholder {
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+
+.todoapp input::-moz-placeholder {
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+
+.todoapp input::input-placeholder {
+	font-style: italic;
+	font-weight: 300;
+	color: #e6e6e6;
+}
+
+.todoapp h1 {
+	position: absolute;
+	top: -155px;
+	width: 100%;
+	font-size: 100px;
+	font-weight: 100;
+	text-align: center;
+	color: rgba(175, 47, 47, 0.15);
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+.new-todo,
+.edit {
+	position: relative;
+	margin: 0;
+	width: 100%;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	border: 0;
+	color: inherit;
+	padding: 6px;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.new-todo {
+	padding: 16px 16px 16px 60px;
+	border: none;
+	background: rgba(0, 0, 0, 0.003);
+	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+
+.main {
+	position: relative;
+	z-index: 2;
+	border-top: 1px solid #e6e6e6;
+}
+
+.toggle-all {
+	width: 1px;
+	height: 1px;
+	border: none; /* Mobile Safari */
+	opacity: 0;
+	position: absolute;
+	right: 100%;
+	bottom: 100%;
+}
+
+.toggle-all + label {
+	width: 60px;
+	height: 34px;
+	font-size: 0;
+	position: absolute;
+	top: -52px;
+	left: -13px;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.toggle-all + label:before {
+	content: '❯';
+	font-size: 22px;
+	color: #e6e6e6;
+	padding: 10px 27px 10px 27px;
+}
+
+.toggle-all:checked + label:before {
+	color: #737373;
+}
+
+.todo-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.todo-list li {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+}
+
+.todo-list li:last-child {
+	border-bottom: none;
+}
+
+.todo-list li.editing {
+	border-bottom: none;
+	padding: 0;
+}
+
+.todo-list li.editing .edit {
+	display: block;
+	width: 506px;
+	padding: 12px 16px;
+	margin: 0 0 0 43px;
+}
+
+.todo-list li.editing .view {
+	display: none;
+}
+
+.todo-list li .toggle {
+	text-align: center;
+	width: 40px;
+	/* auto, since non-WebKit browsers doesn't support input styling */
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	border: none; /* Mobile Safari */
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.todo-list li .toggle {
+	opacity: 0;
+}
+
+.todo-list li .toggle + label {
+	/*
+		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
+		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
+	*/
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.todo-list li .toggle:checked + label {
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
+}
+
+.todo-list li label {
+	word-break: break-all;
+	padding: 15px 15px 15px 60px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+}
+
+.todo-list li.completed label {
+	color: #d9d9d9;
+	text-decoration: line-through;
+}
+
+.todo-list li .destroy {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 30px;
+	color: #cc9a9a;
+	margin-bottom: 11px;
+	transition: color 0.2s ease-out;
+}
+
+.todo-list li .destroy:hover {
+	color: #af5b5e;
+}
+
+.todo-list li .destroy:after {
+	content: '×';
+}
+
+.todo-list li:hover .destroy {
+	display: block;
+}
+
+.todo-list li .edit {
+	display: none;
+}
+
+.todo-list li.editing:last-child {
+	margin-bottom: -1px;
+}
+
+.footer {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+}
+
+.footer:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.todo-count {
+	float: left;
+	text-align: left;
+}
+
+.todo-count strong {
+	font-weight: 300;
+}
+
+.filters {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+
+.filters li {
+	display: inline;
+}
+
+.filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.filters li a:hover {
+	border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filters li a.selected {
+	border-color: rgba(175, 47, 47, 0.2);
+}
+
+.clear-completed,
+html .clear-completed:active {
+	float: right;
+	position: relative;
+	line-height: 20px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.clear-completed:hover {
+	text-decoration: underline;
+}
+
+.info {
+	margin: 65px auto 0;
+	color: #bfbfbf;
+	font-size: 10px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	text-align: center;
+}
+
+.info p {
+	line-height: 1;
+}
+
+.info a {
+	color: inherit;
+	text-decoration: none;
+	font-weight: 400;
+}
+
+.info a:hover {
+	text-decoration: underline;
+}
+
+/*
+	Hack to remove background from Mobile Safari.
+	Can't use it globally since it destroys checkboxes in Firefox
+*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.toggle-all,
+	.todo-list li .toggle {
+		background: none;
+	}
+
+	.todo-list li .toggle {
+		height: 40px;
+	}
+}
+
+@media (max-width: 430px) {
+	.footer {
+		height: 50px;
+	}
+
+	.filters {
+		bottom: 10px;
+	}
+}
+</code></pre>
+<ul>
+<li>Rust side</li>
+</ul>
+<ul>
+<li>lib.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/lib.rs
+//! # TODO MVC
+//!
+//! A [TODO MVC](http://todomvc.com/) implementation written using [web-sys](https://rustwasm.github.io/wasm-bindgen/web-sys/overview.html)
+
+use wasm_bindgen::prelude::*;
+
+use std::rc::Rc;
+
+/// Controller of the program
+pub mod controller;
+/// Element wrapper to the DOM
+pub mod element;
+/// Schedule messages to the Controller and View
+pub mod scheduler;
+/// Stores items into localstorage
+pub mod store;
+/// Handles constructing template strings from data
+pub mod template;
+/// Presentation layer
+pub mod view;
+use crate::controller::{Controller, ControllerMessage};
+use crate::scheduler::Scheduler;
+use crate::store::Store;
+use crate::view::{View, ViewMessage};
+
+/// Message wrapper enum used to pass through the scheduler to the Controller or View
+pub enum Message {
+    /// Message wrapper to send to the controller
+    Controller(ControllerMessage),
+    /// Message wrapper to send to the view
+    View(ViewMessage),
+}
+
+/// Used for debugging to the console
+pub fn exit(message: &amp;str) -&gt; ! {
+    let v = wasm_bindgen::JsValue::from_str(message);
+    web_sys::console::exception_1(&amp;v);
+    std::process::abort()
+}
+
+fn app(name: &amp;str) {
+    let sched = Rc::new(Scheduler::new());
+    let store = match Store::new(name) {
+        Some(s) =&gt; s,
+        None =&gt; return,
+    };
+    let controller = Controller::new(store, Rc::downgrade(&amp;sched));
+    if let Some(mut view) = View::new(Rc::clone(&amp;sched)) {
+        let sch: &amp;Rc&lt;Scheduler&gt; = &amp;sched;
+        view.init();
+        sch.set_view(view);
+        sch.set_controller(controller);
+        sched.add_message(Message::Controller(ControllerMessage::SetPage(
+            "".to_string(),
+        )));
+    }
+}
+
+/// Entry point into the program from JavaScript
+#[wasm_bindgen(start)]
+fn run() -&gt; Result&lt;(), JsValue&gt; {
+    console_error_panic_hook::set_once();
+    app("todos-wasmbindgen");
+
+    Ok(())
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>controller.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Controller of the program
+use crate::exit;
+use crate::store::*;
+use crate::view::ViewMessage;
+use crate::{Message, Scheduler};
+use js_sys::Date;
+
+use std::cell::RefCell;
+use std::rc::Weak;
+
+/// The controller of the application turns page state into functionality
+pub struct Controller {
+    store: Store,
+    sched: RefCell&lt;Option&lt;Weak&lt;Scheduler&gt;&gt;&gt;,
+    active_route: String,
+    last_active_route: String,
+}
+
+/// Messages that represent the methods to be called on the Controller
+pub enum ControllerMessage {
+    AddItem(String),
+    SetPage(String),
+    EditItemSave(String, String),
+    ToggleItem(String, bool),
+    EditItemCancel(String),
+    RemoveCompleted(),
+    RemoveItem(String),
+    ToggleAll(bool),
+}
+
+impl Controller {
+    pub fn new(store: Store, sched: Weak&lt;Scheduler&gt;) -&gt; Controller {
+        Controller {
+            store,
+            sched: RefCell::new(Some(sched)),
+            active_route: "".into(),
+            last_active_route: "none".into(),
+        }
+    }
+
+    /// Used by `Scheduler` to convert a `ControllerMessage` into a function call on a `Controller`
+    pub fn call(&amp;mut self, method_name: ControllerMessage) {
+        use self::ControllerMessage::*;
+        match method_name {
+            AddItem(title) =&gt; self.add_item(title),
+            SetPage(hash) =&gt; self.set_page(hash),
+            EditItemSave(id, value) =&gt; self.edit_item_save(id, value),
+            EditItemCancel(id) =&gt; self.edit_item_cancel(id),
+            RemoveCompleted() =&gt; self.remove_completed_items(),
+            RemoveItem(id) =&gt; self.remove_item(&amp;id),
+            ToggleAll(completed) =&gt; self.toggle_all(completed),
+            ToggleItem(id, completed) =&gt; self.toggle_item(id, completed),
+        }
+    }
+
+    fn toggle_item(&amp;mut self, id: String, completed: bool) {
+        self.toggle_completed(id, completed);
+        self._filter(completed);
+    }
+
+    fn add_message(&amp;self, view_message: ViewMessage) {
+        if let Ok(sched) = self.sched.try_borrow_mut() {
+            if let Some(ref sched) = *sched {
+                if let Some(sched) = sched.upgrade() {
+                    sched.add_message(Message::View(view_message));
+                }
+            }
+        }
+    }
+
+    pub fn set_page(&amp;mut self, raw: String) {
+        let route = raw.trim_start_matches("#/");
+        self.active_route = route.to_string();
+        self._filter(false);
+        self.add_message(ViewMessage::UpdateFilterButtons(route.to_string()));
+    }
+
+    /// Add an Item to the Store and display it in the list.
+    fn add_item(&amp;mut self, title: String) {
+        self.store.insert(Item {
+            id: Date::now().to_string(),
+            title,
+            completed: false,
+        });
+        self.add_message(ViewMessage::ClearNewTodo());
+        self._filter(true);
+    }
+
+    /// Save an Item in edit.
+    fn edit_item_save(&amp;mut self, id: String, title: String) {
+        if !title.is_empty() {
+            self.store.update(ItemUpdate::Title {
+                id: id.clone(),
+                title: title.clone(),
+            });
+            self.add_message(ViewMessage::EditItemDone(id.to_string(), title));
+        } else {
+            self.remove_item(&amp;id);
+        }
+    }
+
+    /// Cancel the item editing mode.
+    fn edit_item_cancel(&amp;mut self, id: String) {
+        let mut message = None;
+        if let Some(data) = self.store.find(ItemQuery::Id { id: id.clone() }) {
+            if let Some(todo) = data.get(0) {
+                let title = todo.title.to_string();
+                message = Some(ViewMessage::EditItemDone(id, title));
+            }
+        }
+        if let Some(message) = message {
+            self.add_message(message);
+        }
+    }
+
+    /// Remove the data and elements related to an Item.
+    fn remove_item(&amp;mut self, id: &amp;String) {
+        self.store.remove(ItemQuery::Id { id: id.clone() });
+        self._filter(false);
+        let ritem = id.to_string();
+        self.add_message(ViewMessage::RemoveItem(ritem));
+    }
+
+    /// Remove all completed items.
+    fn remove_completed_items(&amp;mut self) {
+        self.store.remove(ItemQuery::Completed { completed: true });
+        self._filter(true);
+    }
+
+    /// Update an Item in storage based on the state of completed.
+    fn toggle_completed(&amp;mut self, id: String, completed: bool) {
+        self.store.update(ItemUpdate::Completed {
+            id: id.clone(),
+            completed,
+        });
+        let tid = id;
+        self.add_message(ViewMessage::SetItemComplete(tid, completed));
+    }
+
+    /// Set all items to complete or active.
+    fn toggle_all(&amp;mut self, completed: bool) {
+        let mut vals = Vec::new();
+        if let Some(data) = self.store.find(ItemQuery::EmptyItemQuery) {
+            vals.extend(data.iter().map(|item| item.id.clone()));
+        }
+        for id in vals.iter() {
+            self.toggle_completed(id.to_string(), completed);
+        }
+        self._filter(false);
+    }
+
+    /// Refresh the list based on the current route.
+    fn _filter(&amp;mut self, force: bool) {
+        let route = &amp;self.active_route;
+
+        if force || !self.last_active_route.is_empty() || &amp;self.last_active_route != route {
+            let query = match route.as_str() {
+                "completed" =&gt; ItemQuery::Completed { completed: true },
+                "active" =&gt; ItemQuery::Completed { completed: false },
+                _ =&gt; ItemQuery::EmptyItemQuery,
+            };
+            let mut v = None;
+            {
+                let store = &amp;mut self.store;
+                if let Some(res) = store.find(query) {
+                    v = Some(res.into());
+                }
+            }
+            if let Some(res) = v {
+                self.add_message(ViewMessage::ShowItems(res));
+            }
+        }
+
+        if let Some((total, active, completed)) = self.store.count() {
+            self.add_message(ViewMessage::SetItemsLeft(active));
+            self.add_message(ViewMessage::SetClearCompletedButtonVisibility(
+                completed &gt; 0,
+            ));
+            self.add_message(ViewMessage::SetCompleteAllCheckbox(completed == total));
+            self.add_message(ViewMessage::SetMainVisibility(total &gt; 0));
+        }
+
+        self.last_active_route = route.to_string();
+    }
+}
+
+impl Drop for Controller {
+    fn drop(&amp;mut self) {
+        exit("calling drop on Controller");
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>element.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Element wrapper to the DOM
+use wasm_bindgen::prelude::*;
+use web_sys::EventTarget;
+
+/// Wrapper for `web_sys::Element` to simplify calling different interfaces
+pub struct Element {
+    el: Option&lt;web_sys::Element&gt;,
+}
+
+impl From&lt;web_sys::Element&gt; for Element {
+    fn from(el: web_sys::Element) -&gt; Element {
+        Element { el: Some(el) }
+    }
+}
+
+impl From&lt;web_sys::EventTarget&gt; for Element {
+    fn from(el: web_sys::EventTarget) -&gt; Element {
+        let el = wasm_bindgen::JsCast::dyn_into::&lt;web_sys::Element&gt;(el);
+        Element { el: el.ok() }
+    }
+}
+
+impl From&lt;Element&gt; for Option&lt;web_sys::Node&gt; {
+    fn from(obj: Element) -&gt; Option&lt;web_sys::Node&gt; {
+        obj.el.map(Into::into)
+    }
+}
+
+impl From&lt;Element&gt; for Option&lt;EventTarget&gt; {
+    fn from(obj: Element) -&gt; Option&lt;EventTarget&gt; {
+        obj.el.map(Into::into)
+    }
+}
+
+impl Element {
+    // Create an element from a tag name
+    pub fn create_element(tag: &amp;str) -&gt; Option&lt;Element&gt; {
+        let el = web_sys::window()?.document()?.create_element(tag).ok()?;
+        Some(el.into())
+    }
+
+    pub fn qs(selector: &amp;str) -&gt; Option&lt;Element&gt; {
+        let body: web_sys::Element = web_sys::window()?.document()?.body()?.into();
+        let el = body.query_selector(selector).ok()?;
+        Some(Element { el })
+    }
+
+    /// Add event listener to this node
+    pub fn add_event_listener&lt;T&gt;(&amp;mut self, event_name: &amp;str, handler: T)
+    where
+        T: 'static + FnMut(web_sys::Event),
+    {
+        let cb = Closure::new(handler);
+        if let Some(el) = self.el.take() {
+            let el_et: EventTarget = el.into();
+            el_et
+                .add_event_listener_with_callback(event_name, cb.as_ref().unchecked_ref())
+                .unwrap();
+            cb.forget();
+            if let Ok(el) = el_et.dyn_into::&lt;web_sys::Element&gt;() {
+                self.el = Some(el);
+            }
+        }
+    }
+
+    /// Delegate an event to a selector
+    pub fn delegate&lt;T&gt;(
+        &amp;mut self,
+        selector: &amp;'static str,
+        event: &amp;str,
+        mut handler: T,
+        use_capture: bool,
+    ) where
+        T: 'static + FnMut(web_sys::Event),
+    {
+        let el = match self.el.take() {
+            Some(e) =&gt; e,
+            None =&gt; return,
+        };
+        if let Some(dyn_el) = &amp;el.dyn_ref::&lt;EventTarget&gt;() {
+            if let Some(window) = web_sys::window() {
+                if let Some(document) = window.document() {
+                    // TODO document selector to the target element
+                    let tg_el = document;
+
+                    let cb = Closure::new(move |event: web_sys::Event| {
+                        if let Some(target_element) = event.target() {
+                            let dyn_target_el: Option&lt;&amp;web_sys::Node&gt; =
+                                wasm_bindgen::JsCast::dyn_ref(&amp;target_element);
+                            if let Some(target_element) = dyn_target_el {
+                                if let Ok(potential_elements) = tg_el.query_selector_all(selector) {
+                                    let mut has_match = false;
+                                    for i in 0..potential_elements.length() {
+                                        if let Some(el) = potential_elements.get(i) {
+                                            if target_element.is_equal_node(Some(&amp;el)) {
+                                                has_match = true;
+                                            }
+                                            break;
+                                        }
+                                    }
+
+                                    if has_match {
+                                        handler(event);
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    dyn_el
+                        .add_event_listener_with_callback_and_bool(
+                            event,
+                            cb.as_ref().unchecked_ref(),
+                            use_capture,
+                        )
+                        .unwrap();
+                    cb.forget(); // TODO cycle collect
+                }
+            }
+        }
+        self.el = Some(el);
+    }
+
+    /// Find child `Element`s from this node
+    pub fn qs_from(&amp;mut self, selector: &amp;str) -&gt; Option&lt;Element&gt; {
+        let mut found_el = None;
+        if let Some(el) = self.el.as_ref() {
+            found_el = Some(Element {
+                el: el.query_selector(selector).ok()?,
+            });
+        }
+        found_el
+    }
+
+    /// Sets the inner HTML of the `self.el` element
+    pub fn set_inner_html(&amp;mut self, value: String) {
+        if let Some(el) = self.el.take() {
+            el.set_inner_html(&amp;value);
+            self.el = Some(el);
+        }
+    }
+
+    /// Sets the text content of the `self.el` element
+    pub fn set_text_content(&amp;mut self, value: &amp;str) {
+        if let Some(el) = self.el.as_ref() {
+            if let Some(node) = &amp;el.dyn_ref::&lt;web_sys::Node&gt;() {
+                node.set_text_content(Some(value));
+            }
+        }
+    }
+
+    /// Gets the text content of the `self.el` element
+    pub fn text_content(&amp;mut self) -&gt; Option&lt;String&gt; {
+        let mut text = None;
+        if let Some(el) = self.el.as_ref() {
+            if let Some(node) = &amp;el.dyn_ref::&lt;web_sys::Node&gt;() {
+                text = node.text_content();
+            }
+        }
+        text
+    }
+
+    /// Gets the parent of the `self.el` element
+    pub fn parent_element(&amp;mut self) -&gt; Option&lt;Element&gt; {
+        let mut parent = None;
+        if let Some(el) = self.el.as_ref() {
+            if let Some(node) = &amp;el.dyn_ref::&lt;web_sys::Node&gt;() {
+                if let Some(parent_node) = node.parent_element() {
+                    parent = Some(parent_node.into());
+                }
+            }
+        }
+        parent
+    }
+
+    /// Gets the parent of the `self.el` element
+    pub fn append_child(&amp;mut self, child: &amp;mut Element) {
+        if let Some(el) = self.el.as_ref() {
+            if let Some(node) = &amp;el.dyn_ref::&lt;web_sys::Node&gt;() {
+                if let Some(ref child_el) = child.el {
+                    if let Some(child_node) = child_el.dyn_ref::&lt;web_sys::Node&gt;() {
+                        node.append_child(child_node).unwrap();
+                    }
+                }
+            }
+        }
+    }
+
+    /// Removes a class list item from the element
+    ///
+    /// ```
+    /// e.class_list_remove(String::from("clickable"));
+    /// // removes the class 'clickable' from e.el
+    /// ```
+    pub fn class_list_remove(&amp;mut self, value: &amp;str) {
+        if let Some(el) = self.el.take() {
+            el.class_list().remove_1(value).unwrap();
+            self.el = Some(el);
+        }
+    }
+
+    pub fn class_list_add(&amp;mut self, value: &amp;str) {
+        if let Some(el) = self.el.take() {
+            el.class_list().add_1(value).unwrap();
+            self.el = Some(el);
+        }
+    }
+
+    /// Given another `Element` it will remove that child from the DOM from this element
+    /// Consumes `child` so it can't be used after it's removal.
+    pub fn remove_child(&amp;mut self, mut child: Element) {
+        if let Some(child_el) = child.el.take() {
+            if let Some(el) = self.el.take() {
+                if let Some(el_node) = el.dyn_ref::&lt;web_sys::Node&gt;() {
+                    let child_node: web_sys::Node = child_el.into();
+                    el_node.remove_child(&amp;child_node).unwrap();
+                }
+                self.el = Some(el);
+            }
+        }
+    }
+
+    /// Sets the whole class value for `self.el`
+    pub fn set_class_name(&amp;mut self, class_name: &amp;str) {
+        if let Some(el) = self.el.take() {
+            el.set_class_name(class_name);
+            self.el = Some(el);
+        }
+    }
+
+    /// Sets the visibility for the element in `self.el`
+    pub fn set_visibility(&amp;mut self, visible: bool) {
+        if let Some(el) = self.el.take() {
+            {
+                let dyn_el: Option&lt;&amp;web_sys::HtmlElement&gt; = wasm_bindgen::JsCast::dyn_ref(&amp;el);
+                if let Some(el) = dyn_el {
+                    el.set_hidden(!visible);
+                }
+            }
+            self.el = Some(el);
+        }
+    }
+
+    pub fn blur(&amp;mut self) {
+        if let Some(el) = self.el.take() {
+            {
+                let dyn_el: Option&lt;&amp;web_sys::HtmlElement&gt; = wasm_bindgen::JsCast::dyn_ref(&amp;el);
+                if let Some(el) = dyn_el {
+                    // There isn't much we can do with the result here so ignore
+                    el.blur().unwrap();
+                }
+            }
+            self.el = Some(el);
+        }
+    }
+
+    pub fn focus(&amp;mut self) {
+        if let Some(el) = self.el.take() {
+            {
+                let dyn_el: Option&lt;&amp;web_sys::HtmlElement&gt; = wasm_bindgen::JsCast::dyn_ref(&amp;el);
+                if let Some(el) = dyn_el {
+                    // There isn't much we can do with the result here so ignore
+                    el.focus().unwrap();
+                }
+            }
+            self.el = Some(el);
+        }
+    }
+
+    pub fn dataset_set(&amp;mut self, key: &amp;str, value: &amp;str) {
+        if let Some(el) = self.el.take() {
+            {
+                if let Some(el) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlElement&gt;(&amp;el) {
+                    el.dataset().set(key, value).unwrap();
+                }
+            }
+            self.el = Some(el);
+        }
+    }
+
+    pub fn dataset_get(&amp;mut self, key: &amp;str) -&gt; String {
+        let mut text = String::new();
+        if let Some(el) = self.el.take() {
+            {
+                if let Some(el) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlElement&gt;(&amp;el) {
+                    if let Some(value) = el.dataset().get(key) {
+                        text = value;
+                    }
+                }
+            }
+            self.el = Some(el);
+        }
+        text
+    }
+
+    /// Sets the value for the element in `self.el` (The element must be an input)
+    pub fn set_value(&amp;mut self, value: &amp;str) {
+        if let Some(el) = self.el.take() {
+            if let Some(el) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlInputElement&gt;(&amp;el) {
+                el.set_value(value);
+            }
+            self.el = Some(el);
+        }
+    }
+
+    /// Gets the value for the element in `self.el` (The element must be an input)
+    pub fn value(&amp;mut self) -&gt; String {
+        let mut v = String::new();
+        if let Some(el) = self.el.take() {
+            if let Some(el) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlInputElement&gt;(&amp;el) {
+                v = el.value();
+            }
+            self.el = Some(el);
+        }
+        v
+    }
+
+    /// Sets the checked state for the element in `self.el` (The element must be an input)
+    pub fn set_checked(&amp;mut self, checked: bool) {
+        if let Some(el) = self.el.take() {
+            if let Some(el) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlInputElement&gt;(&amp;el) {
+                el.set_checked(checked);
+            }
+            self.el = Some(el);
+        }
+    }
+
+    /// Gets the checked state for the element in `self.el` (The element must be an input)
+    pub fn checked(&amp;mut self) -&gt; bool {
+        let mut checked = false;
+        if let Some(el) = self.el.take() {
+            if let Some(el) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlInputElement&gt;(&amp;el) {
+                checked = el.checked();
+            }
+            self.el = Some(el);
+        }
+        checked
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>scheduler.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Schedule messages to the Controller and View
+use crate::controller::Controller;
+use crate::exit;
+use crate::view::View;
+use crate::Message;
+use std::cell::RefCell;
+use std::rc::Rc;
+
+/// Creates an event loop that starts each time a message is added
+pub struct Scheduler {
+    controller: Rc&lt;RefCell&lt;Option&lt;Controller&gt;&gt;&gt;,
+    view: Rc&lt;RefCell&lt;Option&lt;View&gt;&gt;&gt;,
+    events: RefCell&lt;Vec&lt;Message&gt;&gt;,
+    running: RefCell&lt;bool&gt;,
+}
+
+fn deadlock() -&gt; ! {
+    exit("This might be a deadlock");
+}
+
+impl Scheduler {
+    /// Construct a new `Scheduler`
+    pub fn new() -&gt; Scheduler {
+        Scheduler {
+            controller: Rc::new(RefCell::new(None)),
+            view: Rc::new(RefCell::new(None)),
+            events: RefCell::new(Vec::new()),
+            running: RefCell::new(false),
+        }
+    }
+
+    pub fn set_controller(&amp;self, controller: Controller) {
+        if let Ok(mut controller_data) = self.controller.try_borrow_mut() {
+            *controller_data = Some(controller);
+        } else {
+            deadlock()
+        }
+    }
+
+    pub fn set_view(&amp;self, view: View) {
+        if let Ok(mut view_data) = self.view.try_borrow_mut() {
+            *view_data = Some(view);
+        } else {
+            deadlock()
+        }
+    }
+
+    /// Add a new message onto the event stack
+    ///
+    /// Triggers running the event loop if it's not already running
+    pub fn add_message(&amp;self, message: Message) {
+        let running = if let Ok(running) = self.running.try_borrow() {
+            *running
+        } else {
+            deadlock()
+        };
+        if let Ok(mut events) = self.events.try_borrow_mut() {
+            events.push(message);
+        } else {
+            deadlock()
+        }
+        if !running {
+            self.run();
+        }
+    }
+
+    /// Start the event loop, taking messages from the stack to run
+    fn run(&amp;self) {
+        let events_len = if let Ok(events) = self.events.try_borrow() {
+            events.len()
+        } else {
+            deadlock()
+        };
+        if events_len == 0 {
+            if let Ok(mut running) = self.running.try_borrow_mut() {
+                *running = false;
+            } else {
+                deadlock()
+            }
+        } else {
+            if let Ok(mut running) = self.running.try_borrow_mut() {
+                *running = true;
+            } else {
+                deadlock()
+            }
+            self.next_message();
+        }
+    }
+
+    fn next_message(&amp;self) {
+        let event = if let Ok(mut events) = self.events.try_borrow_mut() {
+            events.pop()
+        } else {
+            deadlock()
+        };
+        if let Some(event) = event {
+            match event {
+                Message::Controller(e) =&gt; {
+                    if let Ok(mut controller) = self.controller.try_borrow_mut() {
+                        if let Some(ref mut ag) = *controller {
+                            ag.call(e);
+                        }
+                    } else {
+                        deadlock()
+                    }
+                }
+                Message::View(e) =&gt; {
+                    if let Ok(mut view) = self.view.try_borrow_mut() {
+                        if let Some(ref mut ag) = *view {
+                            ag.call(e);
+                        }
+                    } else {
+                        deadlock()
+                    }
+                }
+            }
+            self.run();
+        } else if let Ok(mut running) = self.running.try_borrow_mut() {
+            *running = false;
+        } else {
+            deadlock()
+        }
+    }
+}
+
+impl Drop for Scheduler {
+    fn drop(&amp;mut self) {
+        exit("calling drop on Scheduler");
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>store.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Stores items into localstorage
+use js_sys::JSON;
+use wasm_bindgen::prelude::*;
+
+/// Stores items into localstorage
+pub struct Store {
+    local_storage: web_sys::Storage,
+    data: ItemList,
+    name: String,
+}
+
+impl Store {
+    /// Creates a new store with `name` as the localstorage value name
+    pub fn new(name: &amp;str) -&gt; Option&lt;Store&gt; {
+        let window = web_sys::window()?;
+        if let Ok(Some(local_storage)) = window.local_storage() {
+            let mut store = Store {
+                local_storage,
+                data: ItemList::new(),
+                name: String::from(name),
+            };
+            store.fetch_local_storage();
+            Some(store)
+        } else {
+            None
+        }
+    }
+
+    /// Read the local ItemList from localStorage.
+    /// Returns an &amp;Option&lt;ItemList&gt; of the stored database
+    /// Caches the store into `self.data` to reduce calls to JS
+    ///
+    /// Uses mut here as the return is something we might want to manipulate
+    ///
+    fn fetch_local_storage(&amp;mut self) -&gt; Option&lt;()&gt; {
+        let mut item_list = ItemList::new();
+        // If we have an existing cached value, return early.
+        if let Ok(Some(value)) = self.local_storage.get_item(&amp;self.name) {
+            let data = JSON::parse(&amp;value).ok()?;
+            let iter = js_sys::try_iter(&amp;data).ok()??;
+            for item in iter {
+                let item = item.ok()?;
+                let item_array: &amp;js_sys::Array = wasm_bindgen::JsCast::dyn_ref(&amp;item)?;
+                let title = item_array.shift().as_string()?;
+                let completed = item_array.shift().as_bool()?;
+                let id = item_array.shift().as_string()?;
+                let temp_item = Item {
+                    title,
+                    completed,
+                    id,
+                };
+                item_list.push(temp_item);
+            }
+        }
+        self.data = item_list;
+        Some(())
+    }
+
+    /// Write the local ItemList to localStorage.
+    fn sync_local_storage(&amp;mut self) {
+        let array = js_sys::Array::new();
+        for item in self.data.iter() {
+            let child = js_sys::Array::new();
+            child.push(&amp;JsValue::from(&amp;item.title));
+            child.push(&amp;JsValue::from(item.completed));
+            child.push(&amp;JsValue::from(&amp;item.id));
+
+            array.push(&amp;JsValue::from(child));
+        }
+        if let Ok(storage_string) = JSON::stringify(&amp;JsValue::from(array)) {
+            let storage_string: String = storage_string.into();
+            self.local_storage
+                .set_item(&amp;self.name, &amp;storage_string)
+                .unwrap();
+        }
+    }
+
+    /// Find items with properties matching those on query.
+    /// `ItemQuery` query Query to match
+    ///
+    /// ```
+    ///  let data = db.find(ItemQuery::Completed {completed: true});
+    ///  // data will contain items whose completed properties are true
+    /// ```
+    pub fn find(&amp;mut self, query: ItemQuery) -&gt; Option&lt;ItemListSlice&lt;'_&gt;&gt; {
+        Some(
+            self.data
+                .iter()
+                .filter(|todo| query.matches(todo))
+                .collect(),
+        )
+    }
+
+    /// Update an item in the Store.
+    ///
+    /// `ItemUpdate` update Record with an id and a property to update
+    pub fn update(&amp;mut self, update: ItemUpdate) {
+        let id = update.id();
+        self.data.iter_mut().for_each(|todo| {
+            if id == todo.id {
+                todo.update(&amp;update);
+            }
+        });
+        self.sync_local_storage();
+    }
+
+    /// Insert an item into the Store.
+    ///
+    /// `Item` item Item to insert
+    pub fn insert(&amp;mut self, item: Item) {
+        self.data.push(item);
+        self.sync_local_storage();
+    }
+
+    /// Remove items from the Store based on a query.
+    /// query is an `ItemQuery` query Query matching the items to remove
+    pub fn remove(&amp;mut self, query: ItemQuery) {
+        self.data.retain(|todo| !query.matches(todo));
+        self.sync_local_storage();
+    }
+
+    /// Count total, active, and completed todos.
+    pub fn count(&amp;mut self) -&gt; Option&lt;(usize, usize, usize)&gt; {
+        self.find(ItemQuery::EmptyItemQuery).map(|data| {
+            let total = data.length();
+
+            let mut completed = 0;
+            for item in data.iter() {
+                if item.completed {
+                    completed += 1;
+                }
+            }
+            (total, total - completed, completed)
+        })
+    }
+}
+
+/// Represents a todo item
+pub struct Item {
+    pub id: String,
+    pub title: String,
+    pub completed: bool,
+}
+
+impl Item {
+    pub fn update(&amp;mut self, update: &amp;ItemUpdate) {
+        match update {
+            ItemUpdate::Title { title, .. } =&gt; {
+                self.title = title.to_string();
+            }
+            ItemUpdate::Completed { completed, .. } =&gt; {
+                self.completed = *completed;
+            }
+        }
+    }
+}
+
+pub trait ItemListTrait&lt;T&gt; {
+    fn new() -&gt; Self;
+    fn get(&amp;self, i: usize) -&gt; Option&lt;&amp;T&gt;;
+    fn length(&amp;self) -&gt; usize;
+    fn push(&amp;mut self, item: T);
+    fn iter(&amp;self) -&gt; std::slice::Iter&lt;'_, T&gt;;
+}
+
+pub struct ItemList {
+    list: Vec&lt;Item&gt;,
+}
+impl ItemList {
+    fn retain&lt;F&gt;(&amp;mut self, f: F)
+    where
+        F: FnMut(&amp;Item) -&gt; bool,
+    {
+        self.list.retain(f);
+    }
+    fn iter_mut(&amp;mut self) -&gt; std::slice::IterMut&lt;'_, Item&gt; {
+        self.list.iter_mut()
+    }
+}
+impl ItemListTrait&lt;Item&gt; for ItemList {
+    fn new() -&gt; ItemList {
+        ItemList { list: Vec::new() }
+    }
+    fn get(&amp;self, i: usize) -&gt; Option&lt;&amp;Item&gt; {
+        self.list.get(i)
+    }
+    fn length(&amp;self) -&gt; usize {
+        self.list.len()
+    }
+    fn push(&amp;mut self, item: Item) {
+        self.list.push(item)
+    }
+    fn iter(&amp;self) -&gt; std::slice::Iter&lt;'_, Item&gt; {
+        self.list.iter()
+    }
+}
+use std::iter::FromIterator;
+impl FromIterator&lt;Item&gt; for ItemList {
+    fn from_iter&lt;I: IntoIterator&lt;Item = Item&gt;&gt;(iter: I) -&gt; Self {
+        let mut c = ItemList::new();
+        for i in iter {
+            c.push(i);
+        }
+
+        c
+    }
+}
+
+/// A borrowed set of Items filtered from the store
+pub struct ItemListSlice&lt;'a&gt; {
+    list: Vec&lt;&amp;'a Item&gt;,
+}
+
+impl&lt;'a&gt; ItemListTrait&lt;&amp;'a Item&gt; for ItemListSlice&lt;'a&gt; {
+    fn new() -&gt; ItemListSlice&lt;'a&gt; {
+        ItemListSlice { list: Vec::new() }
+    }
+    fn get(&amp;self, i: usize) -&gt; Option&lt;&amp;&amp;'a Item&gt; {
+        self.list.get(i)
+    }
+    fn length(&amp;self) -&gt; usize {
+        self.list.len()
+    }
+    fn push(&amp;mut self, item: &amp;'a Item) {
+        self.list.push(item)
+    }
+    fn iter(&amp;self) -&gt; std::slice::Iter&lt;'_, &amp;'a Item&gt; {
+        self.list.iter()
+    }
+}
+
+impl&lt;'a&gt; FromIterator&lt;&amp;'a Item&gt; for ItemListSlice&lt;'a&gt; {
+    fn from_iter&lt;I: IntoIterator&lt;Item = &amp;'a Item&gt;&gt;(iter: I) -&gt; Self {
+        let mut c = ItemListSlice::new();
+        for i in iter {
+            c.push(i);
+        }
+        c
+    }
+}
+
+impl From&lt;ItemListSlice&lt;'_&gt;&gt; for ItemList {
+    fn from(s: ItemListSlice&lt;'_&gt;) -&gt; Self {
+        let mut i = ItemList::new();
+        let items = s.list.into_iter();
+        for j in items {
+            // TODO neaten this cloning?
+            let item = Item {
+                id: j.id.clone(),
+                completed: j.completed,
+                title: j.title.clone(),
+            };
+            i.push(item);
+        }
+        i
+    }
+}
+
+/// Represents a search into the store
+pub enum ItemQuery {
+    Id { id: String },
+    Completed { completed: bool },
+    EmptyItemQuery,
+}
+
+impl ItemQuery {
+    fn matches(&amp;self, item: &amp;Item) -&gt; bool {
+        match *self {
+            ItemQuery::EmptyItemQuery =&gt; true,
+            ItemQuery::Id { ref id } =&gt; &amp;item.id == id,
+            ItemQuery::Completed { completed } =&gt; item.completed == completed,
+        }
+    }
+}
+
+pub enum ItemUpdate {
+    Title { id: String, title: String },
+    Completed { id: String, completed: bool },
+}
+
+impl ItemUpdate {
+    fn id(&amp;self) -&gt; String {
+        match self {
+            ItemUpdate::Title { id, .. } =&gt; id.clone(),
+            ItemUpdate::Completed { id, .. } =&gt; id.clone(),
+        }
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>template.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Handles constructing template strings from data
+use crate::store::{ItemList, ItemListTrait};
+use askama::Template as AskamaTemplate;
+
+#[derive(AskamaTemplate)]
+#[template(path = "row.html")]
+struct RowTemplate&lt;'a&gt; {
+    id: &amp;'a str,
+    title: &amp;'a str,
+    completed: bool,
+}
+
+#[derive(AskamaTemplate)]
+#[template(path = "itemsLeft.html")]
+struct ItemsLeftTemplate {
+    active_todos: usize,
+}
+
+pub struct Template {}
+
+impl Template {
+    /// Format the contents of a todo list.
+    ///
+    /// items `ItemList` contains keys you want to find in the template to replace.
+    /// Returns the contents for a todo list
+    ///
+    pub fn item_list(items: ItemList) -&gt; String {
+        let mut output = String::from("");
+        for item in items.iter() {
+            let row = RowTemplate {
+                id: &amp;item.id,
+                completed: item.completed,
+                title: &amp;item.title,
+            };
+            if let Ok(res) = row.render() {
+                output.push_str(&amp;res);
+            }
+        }
+        output
+    }
+
+    ///
+    /// Format the contents of an "items left" indicator.
+    ///
+    /// `active_todos` Number of active todos
+    ///
+    /// Returns the contents for an "items left" indicator
+    pub fn item_counter(active_todos: usize) -&gt; String {
+        let items_left = ItemsLeftTemplate { active_todos };
+        if let Ok(res) = items_left.render() {
+            res
+        } else {
+            String::new()
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>view.rs</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Presentation layer
+use crate::controller::ControllerMessage;
+use crate::element::Element;
+use crate::exit;
+use crate::store::ItemList;
+use crate::{Message, Scheduler};
+use std::cell::RefCell;
+use std::rc::Rc;
+
+use crate::template::Template;
+
+const ENTER_KEY: u32 = 13;
+const ESCAPE_KEY: u32 = 27;
+
+use wasm_bindgen::prelude::*;
+
+/// Messages that represent the methods to be called on the View
+pub enum ViewMessage {
+    UpdateFilterButtons(String),
+    ClearNewTodo(),
+    ShowItems(ItemList),
+    SetItemsLeft(usize),
+    SetClearCompletedButtonVisibility(bool),
+    SetCompleteAllCheckbox(bool),
+    SetMainVisibility(bool),
+    RemoveItem(String),
+    EditItemDone(String, String),
+    SetItemComplete(String, bool),
+}
+fn item_id(mut element: Element) -&gt; Option&lt;String&gt; {
+    element.parent_element().map(|mut parent| {
+        let mut res = None;
+        let parent_id = parent.dataset_get("id");
+        if !parent_id.is_empty() {
+            res = Some(parent_id);
+        } else if let Some(mut ep) = parent.parent_element() {
+            res = Some(ep.dataset_get("id"));
+        }
+        res.unwrap()
+    })
+}
+
+/// Presentation layer
+#[wasm_bindgen]
+pub struct View {
+    sched: RefCell&lt;Rc&lt;Scheduler&gt;&gt;,
+    todo_list: Element,
+    todo_item_counter: Element,
+    clear_completed: Element,
+    main: Element,
+    toggle_all: Element,
+    new_todo: Element,
+    callbacks: Vec&lt;(web_sys::EventTarget, String, Closure&lt;dyn FnMut()&gt;)&gt;,
+}
+
+impl View {
+    /// Construct a new view
+    pub fn new(sched: Rc&lt;Scheduler&gt;) -&gt; Option&lt;View&gt; {
+        let todo_list = Element::qs(".todo-list")?;
+        let todo_item_counter = Element::qs(".todo-count")?;
+        let clear_completed = Element::qs(".clear-completed")?;
+        let main = Element::qs(".main")?;
+        let toggle_all = Element::qs(".toggle-all")?;
+        let new_todo = Element::qs(".new-todo")?;
+        Some(View {
+            sched: RefCell::new(sched),
+            todo_list,
+            todo_item_counter,
+            clear_completed,
+            main,
+            toggle_all,
+            new_todo,
+            callbacks: Vec::new(),
+        })
+    }
+
+    pub fn init(&amp;mut self) {
+        let window = match web_sys::window() {
+            Some(w) =&gt; w,
+            None =&gt; return,
+        };
+        let document = match window.document() {
+            Some(d) =&gt; d,
+            None =&gt; return,
+        };
+        let sched = self.sched.clone();
+        let set_page = Closure::&lt;dyn FnMut()&gt;::new(move || {
+            if let Some(location) = document.location() {
+                if let Ok(hash) = location.hash() {
+                    if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                        sched.add_message(Message::Controller(ControllerMessage::SetPage(hash)));
+                    }
+                }
+            }
+        });
+
+        let window_et: web_sys::EventTarget = window.into();
+        window_et
+            .add_event_listener_with_callback("hashchange", set_page.as_ref().unchecked_ref())
+            .unwrap();
+        set_page.forget(); // Cycle collect this
+                           //self.callbacks.push((window_et, "hashchange".to_string(), set_page));
+        self.bind_add_item();
+        self.bind_edit_item_save();
+        self.bind_edit_item_cancel();
+        self.bind_remove_item();
+        self.bind_toggle_item();
+        self.bind_edit_item();
+        self.bind_remove_completed();
+        self.bind_toggle_all();
+    }
+
+    fn bind_edit_item(&amp;mut self) {
+        self.todo_list.delegate(
+            "li label",
+            "dblclick",
+            |e: web_sys::Event| {
+                if let Some(target) = e.target() {
+                    View::edit_item(target.into());
+                }
+            },
+            false,
+        );
+    }
+
+    /// Put an item into edit mode.
+    fn edit_item(mut el: Element) {
+        if let Some(mut parent_element) = el.parent_element() {
+            if let Some(mut list_item) = parent_element.parent_element() {
+                list_item.class_list_add("editing");
+                if let Some(mut input) = Element::create_element("input") {
+                    input.set_class_name("edit");
+                    if let Some(text) = el.text_content() {
+                        input.set_value(&amp;text);
+                    }
+                    list_item.append_child(&amp;mut input);
+                    input.focus();
+                }
+            }
+        }
+    }
+
+    /// Used by scheduler to convert a `ViewMessage` into a function call on the `View`
+    pub fn call(&amp;mut self, method_name: ViewMessage) {
+        use self::ViewMessage::*;
+        match method_name {
+            UpdateFilterButtons(route) =&gt; self.update_filter_buttons(&amp;route),
+            ClearNewTodo() =&gt; self.clear_new_todo(),
+            ShowItems(item_list) =&gt; self.show_items(item_list),
+            SetItemsLeft(count) =&gt; self.set_items_left(count),
+            SetClearCompletedButtonVisibility(visible) =&gt; {
+                self.set_clear_completed_button_visibility(visible)
+            }
+            SetCompleteAllCheckbox(complete) =&gt; self.set_complete_all_checkbox(complete),
+            SetMainVisibility(complete) =&gt; self.set_main_visibility(complete),
+            RemoveItem(id) =&gt; self.remove_item(&amp;id),
+            EditItemDone(id, title) =&gt; self.edit_item_done(&amp;id, &amp;title),
+            SetItemComplete(id, completed) =&gt; self.set_item_complete(&amp;id, completed),
+        }
+    }
+
+    /// Populate the todo list with a list of items.
+    fn show_items(&amp;mut self, items: ItemList) {
+        self.todo_list.set_inner_html(Template::item_list(items));
+    }
+
+    /// Gets the selector to find a todo item in the DOM
+    fn get_selector_string(id: &amp;str) -&gt; String {
+        let mut selector = String::from("[data-id=\"");
+        selector.push_str(id);
+        selector.push_str("\"]");
+        selector
+    }
+
+    /// Remove an item from the view.
+    fn remove_item(&amp;mut self, id: &amp;str) {
+        let elem = Element::qs(&amp;View::get_selector_string(id));
+
+        if let Some(elem) = elem {
+            self.todo_list.remove_child(elem);
+        }
+    }
+
+    /// Set the number in the 'items left' display.
+    fn set_items_left(&amp;mut self, items_left: usize) {
+        self.todo_item_counter
+            .set_inner_html(Template::item_counter(items_left));
+    }
+
+    /// Set the visibility of the "Clear completed" button.
+    fn set_clear_completed_button_visibility(&amp;mut self, visible: bool) {
+        self.clear_completed.set_visibility(visible);
+    }
+
+    /// Set the visibility of the main content and footer.
+    fn set_main_visibility(&amp;mut self, visible: bool) {
+        self.main.set_visibility(visible);
+    }
+
+    /// Set the checked state of the Complete All checkbox.
+    fn set_complete_all_checkbox(&amp;mut self, checked: bool) {
+        self.toggle_all.set_checked(checked);
+    }
+
+    /// Change the appearance of the filter buttons based on the route.
+    fn update_filter_buttons(&amp;self, route: &amp;str) {
+        if let Some(mut el) = Element::qs(".filters .selected") {
+            el.set_class_name("");
+        }
+
+        let mut selector = String::from(".filters [href=\"");
+        selector.push_str(route);
+        selector.push_str("\"]");
+
+        if let Some(mut el) = Element::qs(&amp;selector) {
+            el.set_class_name("selected");
+        }
+    }
+
+    /// Clear the new todo input
+    fn clear_new_todo(&amp;mut self) {
+        self.new_todo.set_value("");
+    }
+
+    /// Render an item as either completed or not.
+    fn set_item_complete(&amp;self, id: &amp;str, completed: bool) {
+        if let Some(mut list_item) = Element::qs(&amp;View::get_selector_string(id)) {
+            let class_name = if completed { "completed" } else { "" };
+            list_item.set_class_name(class_name);
+
+            // In case it was toggled from an event and not by clicking the checkbox
+            if let Some(mut el) = list_item.qs_from("input") {
+                el.set_checked(completed);
+            }
+        }
+    }
+
+    /// Bring an item out of edit mode.
+    fn edit_item_done(&amp;self, id: &amp;str, title: &amp;str) {
+        if let Some(mut list_item) = Element::qs(&amp;View::get_selector_string(id)) {
+            if let Some(input) = list_item.qs_from("input.edit") {
+                list_item.class_list_remove("editing");
+
+                if let Some(mut list_item_label) = list_item.qs_from("label") {
+                    list_item_label.set_text_content(title);
+                }
+
+                list_item.remove_child(input);
+            }
+        }
+    }
+
+    fn bind_add_item(&amp;mut self) {
+        let sched = self.sched.clone();
+        let cb = move |event: web_sys::Event| {
+            if let Some(target) = event.target() {
+                if let Some(input_el) =
+                    wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlInputElement&gt;(&amp;target)
+                {
+                    let v = input_el.value(); // TODO remove with nll
+                    let title = v.trim();
+                    if !title.is_empty() {
+                        if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                            sched.add_message(Message::Controller(ControllerMessage::AddItem(
+                                String::from(title),
+                            )));
+                        }
+                    }
+                }
+            }
+        };
+        self.new_todo.add_event_listener("change", cb);
+    }
+
+    fn bind_remove_completed(&amp;mut self) {
+        let sched = self.sched.clone();
+        let handler = move |_| {
+            if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                sched.add_message(Message::Controller(ControllerMessage::RemoveCompleted()));
+            }
+        };
+        self.clear_completed.add_event_listener("click", handler);
+    }
+
+    fn bind_toggle_all(&amp;mut self) {
+        let sched = self.sched.clone();
+        self.toggle_all
+            .add_event_listener("click", move |event: web_sys::Event| {
+                if let Some(target) = event.target() {
+                    if let Some(input_el) =
+                        wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::HtmlInputElement&gt;(&amp;target)
+                    {
+                        if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                            sched.add_message(Message::Controller(ControllerMessage::ToggleAll(
+                                input_el.checked(),
+                            )));
+                        }
+                    }
+                }
+            });
+    }
+
+    fn bind_remove_item(&amp;mut self) {
+        let sched = self.sched.clone();
+        self.todo_list.delegate(
+            ".destroy",
+            "click",
+            move |e: web_sys::Event| {
+                if let Some(target) = e.target() {
+                    let el: Element = target.into();
+                    if let Some(item_id) = item_id(el) {
+                        if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                            sched.add_message(Message::Controller(ControllerMessage::RemoveItem(
+                                item_id,
+                            )));
+                        }
+                    }
+                }
+            },
+            false,
+        );
+    }
+
+    fn bind_toggle_item(&amp;mut self) {
+        let sched = self.sched.clone();
+        self.todo_list.delegate(
+            ".toggle",
+            "click",
+            move |e: web_sys::Event| {
+                if let Some(target) = e.target() {
+                    let mut el: Element = target.into();
+                    let checked = el.checked();
+                    if let Some(item_id) = item_id(el) {
+                        if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                            sched.add_message(Message::Controller(ControllerMessage::ToggleItem(
+                                item_id, checked,
+                            )));
+                        }
+                    }
+                }
+            },
+            false,
+        );
+    }
+
+    fn bind_edit_item_save(&amp;mut self) {
+        let sched = self.sched.clone();
+
+        self.todo_list.delegate(
+            "li .edit",
+            "blur",
+            move |e: web_sys::Event| {
+                if let Some(target) = e.target() {
+                    let mut target_el: Element = target.into();
+                    if target_el.dataset_get("iscancelled") != "true" {
+                        let val = target_el.value();
+                        if let Some(item) = item_id(target_el) {
+                            // TODO refactor back into fn
+                            // Was: &amp;self.add_message(ControllerMessage::SetPage(hash));
+                            if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                                sched.add_message(Message::Controller(
+                                    ControllerMessage::EditItemSave(item, val),
+                                ));
+                            }
+                            // TODO refactor back into fn
+                        }
+                    }
+                }
+            },
+            true,
+        );
+
+        // Remove the cursor from the input when you hit enter just like if it were a real form
+        self.todo_list.delegate(
+            "li .edit",
+            "keypress",
+            |e: web_sys::Event| {
+                if let Some(key_e) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::KeyboardEvent&gt;(&amp;e) {
+                    if key_e.key_code() == ENTER_KEY {
+                        if let Some(target) = e.target() {
+                            let mut el: Element = target.into();
+                            el.blur();
+                        }
+                    }
+                }
+            },
+            false,
+        );
+    }
+
+    fn bind_edit_item_cancel(&amp;mut self) {
+        let sched = self.sched.clone();
+        self.todo_list.delegate(
+            "li .edit",
+            "keyup",
+            move |e: web_sys::Event| {
+                if let Some(key_e) = wasm_bindgen::JsCast::dyn_ref::&lt;web_sys::KeyboardEvent&gt;(&amp;e) {
+                    if key_e.key_code() == ESCAPE_KEY {
+                        if let Some(target) = e.target() {
+                            let mut el: Element = target.into();
+                            el.dataset_set("iscanceled", "true");
+                            el.blur();
+                            if let Some(item_id) = item_id(el) {
+                                if let Ok(sched) = &amp;(sched.try_borrow_mut()) {
+                                    sched.add_message(Message::Controller(
+                                        ControllerMessage::EditItemCancel(item_id),
+                                    ));
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            false,
+        );
+    }
+}
+
+impl Drop for View {
+    fn drop(&amp;mut self) {
+        for callback in self.callbacks.drain(..) {
+            callback
+                .0
+                .remove_event_listener_with_callback(
+                    callback.1.as_str(),
+                    callback.2.as_ref().unchecked_ref(),
+                )
+                .unwrap();
+        }
+        exit("calling drop on view");
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>build</li>
+</ul>
+<p>Adding in TODO MVC example using web-sys</p>
+<pre><pre class="playground"><code class="language-rust">extern crate askama;
+
+fn main() {
+    askama::rerun_if_templates_changed();
+}</code></pre></pre>
+<h3 id="running-the-demo"><a class="header" href="#running-the-demo">Running the demo</a></h3>
+<p>"<em>Currently it's required to use the --target no-modules or --target web flag with wasm-bindgen to run threaded code. This is because the WebAssembly file imports memory instead of exporting it, so we need to hook initialization of the wasm module at this time to provide the appropriate memory object. This demo uses --target no-modules, because Firefox does not support modules in workers.</em></p>
+<p><em>With --target no-modules you'll be able to use importScripts inside of each web worker to import the shim JS generated by wasm-bindgen as well as calling the wasm_bindgen initialization function with the shared memory instance from the main thread. The expected usage is that WebAssembly on the main thread will post its memory object to all other threads to get instantiated with.</em>"<br />
+_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/raytrace-parallel.html">wasm-bindgen Guide</a>{target="_blank"}</p>
+<h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
+<blockquote>
+<p>This example requires to <em>not</em> create ES modules, therefore we pass the flag
+<code>--target no-modules</code></p>
+</blockquote>
+<pre><code class="language-sh">wasm-pack build --target no-modules --no-typescript --out-dir www/pkg
+
+http www
+</code></pre>
+<p>open <code>index.html</code></p>
+<pre><code class="language-sh">firefox http://localhost:8000/html/
+</code></pre>
+<p>NOTE:</p>
+<em>
+Size
+<p>The size of the project hasn't undergone much work to make it optimised yet.</p>
+<pre><code>~96kb release build
+~76kb optimised with binaryen
+~28kb brotli compressed
+</code></pre>
+</em>
+[wasm-bindgen guide](https://rustwasm.github.io/wasm-bindgen/examples/todomvc.html)
+---
+<h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
+<p>Were are done for now.</p>
+</main>
+<script src="https://lerina.github.io/js/toc.js"></script>
+<script>
+let anchor= document.createElement('a');
+anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
+anchor.className = "closebtn";  
+anchor.innerHTML="&times;";
+document.getElementById("TOC").prepend(anchor);
+<p>let navCrumbs= document.createElement('div');
+navCrumbs.className = "hover-nav";
+navCrumbs.innerHTML = `</p>
+<div class="hover-nav">
+<ul>
+<li><a href="../../../../index.html">⇦ home</a></li>
+<li><a href="../index.html">hello_world</a></li>
+</ul>
+</div>`;
+document.getElementById("TOC").prepend(navCrumbs); 
+</script>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="021.wasm-audio-worklet.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="canvas2d_game.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="021.wasm-audio-worklet.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="canvas2d_game.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
