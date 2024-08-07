@@ -9,7 +9,7 @@ You feel NPM and Webpack is just overkill for a simple hello world, or a todo li
 
 This guide is for you.
 
-Start here: [**Rust &amp; Wasm nobundle**](./book/index.html)
+Start here: [**Rust &amp; Wasm nobundle**](https://nobundle.github.io/book/introduction.html)
 
 
 ---
