@@ -173,13 +173,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="performance"><a class="header" href="#performance">performance<div class="navbar"><a class="openbtn" onclick="openNav()">☰</a></div></a></h1>
-<main>
-[`<--` web-sys: Closures](./007_closures.html)
+                        <!-- This is an outline of how to structure a tech tutorial -->
+<!-- Introduction - Essential summary of the tutorial -->
+<!-- Overview - The problem you are trying to solve with the tutorial -->
+<!-- Prerequisites - What the reader must have before getting started. -->
+<!-- Lab - Step-by-step instructions -->
+<!-- Validation - How should the reader verify the tutorial outcome? -->
+<!-- Tearing down - Cleaning up resources -->
+<!-- Conclusion - Takeaways -->
 <h2 id="web-sys-performancenow"><a class="header" href="#web-sys-performancenow">web-sys: performance.now</a></h2>
 <p><em>Want to profile some Rust code in the browser? No problem! You can use the performance.now() API and friends to get timing information to see how long things take.</em>
-_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/performance.html">wasm-bindgen Guide</a>{target="_blank"}</p>
-<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/main/examples/performance">web-sys: performance.now</a>{target="_blank"}</p>
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/performance.html" target="_blank">_ [wasm-bindgen Guide]</a></p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/main/examples/performance" target="_blank">[web-sys: performance.now]</a></p>
 <h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
 <pre><code class="language-sh">cargo new performance --lib
 cd performance
@@ -255,6 +260,18 @@ fn perf_to_system(amt: f64) -&gt; SystemTime {
 }
 <span class="boring">}</span></code></pre></pre>
 <h2 id="add-extra-dependencies"><a class="header" href="#add-extra-dependencies">Add extra dependencies</a></h2>
+<pre><code>cargo add humantime
+cargo add --dev web-sys -F "Window, Performance, PerformanceTiming"
+</code></pre>
+<p>then isolate web-sys into a specific dependency entry</p>
+<pre><code>[dependencies.web-sys]
+version = "0.3.69"
+features = ["Window", 
+  "Performance", 
+  "PerformanceTiming"]
+
+</code></pre>
+<p>It should look like this:</p>
 <pre><code class="language-toml">...
 
 [dependencies]
@@ -262,8 +279,11 @@ wasm-bindgen = "0.2.88"
 humantime = "2"
 
 [dependencies.web-sys]
-version = "0.3.4"
-features = ['Window', 'Performance', 'PerformanceTiming']
+version = "0.3.69"
+features = ["Window", 
+  "Performance", 
+  "PerformanceTiming"]
+
 </code></pre>
 <h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
 <pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
@@ -273,28 +293,11 @@ http www
 <p>open <code>index.html</code></p>
 <pre><code class="language-sh">firefox http://localhost:8000/html/
 </code></pre>
+<p><img src="../img/008.performance.png" alt="Performance" /></p>
 <hr />
 <h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
-<p>Next example: <a href="./009_fetch.html">The fetch API <code>--&gt;</code></a></p>
-</main>
-<script src="https://lerina.github.io/js/toc.js"></script>
-<script>
-let anchor= document.createElement('a');
-anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
-anchor.className = "closebtn";  
-anchor.innerHTML="&times;";
-document.getElementById("TOC").prepend(anchor);
-<p>let navCrumbs= document.createElement('div');
-navCrumbs.className = "hover-nav";
-navCrumbs.innerHTML = `</p>
-<div class="hover-nav">
-<ul>
-<li><a href="../../../../index.html">⇦ home</a></li>
-<li><a href="../index.html">hello_world</a></li>
-</ul>
-</div>`;
-document.getElementById("TOC").prepend(navCrumbs); 
-</script>
+<p><a href="./007_closures.html"><code>&lt;--</code> web-sys: Closures</a><br />
+<a href="./009_fetch.html">The fetch API <code>--&gt;</code></a></p>
 
                     </main>
 

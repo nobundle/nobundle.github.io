@@ -173,22 +173,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
-<main>
-<p><a href="./009_fetch.html"><code>&lt;--</code> The fetch API</a></p>
+                        <!-- This is an outline of how to structure a tech tutorial -->
+<!-- Introduction - Essential summary of the tutorial -->
+<!-- Overview - The problem you are trying to solve with the tutorial -->
+<!-- Prerequisites - What the reader must have before getting started. -->
+<!-- Lab - Step-by-step instructions -->
+<!-- Validation - How should the reader verify the tutorial outcome? -->
+<!-- Tearing down - Cleaning up resources -->
+<!-- Conclusion - Takeaways -->
 <h2 id="web-sys-weather-report"><a class="header" href="#web-sys-weather-report">web-sys: Weather report</a></h2>
 <p><em>This example makes an HTTP request to <a href="https://openweathermap.org/">OpenWeather API</a>{target="_blank"}, parses response in JSON and render UI from that JSON. It also shows the usage of spawn_local function for handling asynchronous tasks.</em>
-_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/weather_report.html">wasm-bindgen Guide</a>{target="_blank"}</p>
-<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/weather_report">web-sys: Weather report</a>{target="_blank"}</p>
-<p><span style="color:red">The original example asks us to add our api key in get_response() before running this application.</span><br />
-<b>Let's use <a href="https://open-meteo.com/">open-meteo</a> instead</b>. Open-Meteo is an open-source weather API and offers free access for non-commercial use. No API key required.</p>
-<p>Our crate will be called meteo. we'll keep it simple to avoid <em>noise</em>
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/weather_report.html" target="_blank">_ [wasm-bindgen Guide]</a></p>
+<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/weather_report" target="_blank">[web-sys: Weather report]</a></p>
+<p><span style="color:red">The original example asks us to add our api key in get_response() before running this application.</span></p>
+<p><b>Let's use <a href="https://open-meteo.com/" target="_blank">[open-meteo]</a> instead</b>.
+Open-Meteo is an open-source weather API and offers free access for non-commercial use. <em>No API key required</em>.</p>
+<p>Our crate will be called meteo. We'll keep it simple to avoid <em>noise</em>
 in our code that distract us from the aim of this example.</p>
 <h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
 <pre><code class="language-sh">cargo new meteo --lib
 cd meteo
 mkdir -p www/js www/html
 cargo add wasm-bindgen js-sys wasm-bindgen-futures
+cargo add gloo json reqwest serde -F "reqwest/json, serde/derive"
 
 </code></pre>
 <p>edit Cargo.toml to add <code>crate-type</code> &amp; dependencies</p>
@@ -205,8 +212,13 @@ serde = { version = "1.0.193", features = ["derive"] }
 wasm-bindgen = "0.2.90"
 wasm-bindgen-futures = "0.4.40"
 
-
-[dependencies.web-sys]
+</code></pre>
+<p>Also add web-sys in a separate dependency.
+Here is a hack to save on typing.</p>
+<p>First genarate an entry as a dev dependency</p>
+<p><code>cargo add --dev web-sys  -F "Document Element HtmlSelectElement Window"</code></p>
+<p>Next edit the <code>[dev.dependencies]</code> block to <code>[dependencies.web-sys]</code></p>
+<pre><code>[dependencies.web-sys]
 version = "0.3.67"
 features = [
   'Document',
@@ -434,34 +446,17 @@ async fn get_temp(lat: f32, lon: f32) -&gt; Result&lt;OpenMeteo, Error&gt; { // 
 <span class="boring">}</span></code></pre></pre>
 <h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
 <pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
-
-http www
+</code></pre>
+<pre><code>http www
 </code></pre>
 <p>open <code>index.html</code></p>
 <pre><code class="language-sh">firefox http://localhost:8000/html/
 </code></pre>
+<p><img src="../img/010.meteo.png" alt="weather api" /></p>
 <hr />
 <h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
-<p>Next example: <a href="./011.canvas.html">web-sys: canvas hello world <code>--&gt;</code></a></p>
-</main>
-<script src="https://lerina.github.io/js/toc.js"></script>
-<script>
-let anchor= document.createElement('a');
-anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
-anchor.className = "closebtn";  
-anchor.innerHTML="&times;";
-document.getElementById("TOC").prepend(anchor);
-<p>let navCrumbs= document.createElement('div');
-navCrumbs.className = "hover-nav";
-navCrumbs.innerHTML = `</p>
-<div class="hover-nav">
-<ul>
-<li><a href="../../../../index.html">⇦ home</a></li>
-<li><a href="../index.html">hello_world</a></li>
-</ul>
-</div>`;
-document.getElementById("TOC").prepend(navCrumbs); 
-</script>
+<p><a href="./009_fetch.html"><code>&lt;--</code> The fetch API</a><br />
+<a href="./011.canvas.html">web-sys: canvas hello world <code>--&gt;</code></a></p>
 
                     </main>
 

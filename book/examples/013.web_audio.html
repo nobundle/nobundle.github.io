@@ -173,13 +173,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
-<main>
-<p><a href="./012.julia_set.html"><code>&lt;--</code> web-sys: Julia set</a></p>
+                        <p>!-- This is an outline of how to structure a tech tutorial --&gt;</p>
+<!-- Introduction - Essential summary of the tutorial -->
+<!-- Overview - The problem you are trying to solve with the tutorial -->
+<!-- Prerequisites - What the reader must have before getting started. -->
+<!-- Lab - Step-by-step instructions -->
+<!-- Validation - How should the reader verify the tutorial outcome? -->
+<!-- Tearing down - Cleaning up resources -->
+<!-- Conclusion - Takeaways -->
 <h2 id="web-sys-webaudio"><a class="header" href="#web-sys-webaudio">web-sys: webaudio</a></h2>
 <p><em>This example creates an FM oscillator using the WebAudio API and web-sys.</em>
-_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/web-audio.html">wasm-bindgen Guide</a>{target="_blank"}</p>
-<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/main/examples/webaudio">web-sys: webaudio</a>{target="_blank"}</p>
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/web-audio.html" target="_blank">_ [wasm-bindgen Guide]</a></p>
+<p>Original <a href="https://github.com/rustwasm/wasm-bindgen/tree/main/examples/webaudio" target="_blank">[web-sys: webaudio]</a></p>
 <h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
 <pre><code class="language-sh">cargo new webaudio --lib
 cd webaudio
@@ -195,7 +200,7 @@ crate-type = ["cdylib",]
 
 
 [dependencies.web-sys]
-version = "0.3.66"
+version = "0.3.69"
 features = [
   'Headers',
   'Request',
@@ -422,34 +427,16 @@ impl FmOsc {
 <span class="boring">}</span></code></pre></pre>
 <h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
 <pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
-
-http www
+</code></pre>
+<pre><code>http www
 </code></pre>
 <p>open <code>index.html</code></p>
 <pre><code class="language-sh">firefox http://localhost:8000/html/
 </code></pre>
 <hr />
 <h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
-<p>Next example: <a href="./014.webgl.html">web-sys: webGl <code>--&gt;</code></a></p>
-</main>
-<script src="https://lerina.github.io/js/toc.js"></script>
-<script>
-let anchor= document.createElement('a');
-anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
-anchor.className = "closebtn";  
-anchor.innerHTML="&times;";
-document.getElementById("TOC").prepend(anchor);
-<p>let navCrumbs= document.createElement('div');
-navCrumbs.className = "hover-nav";
-navCrumbs.innerHTML = `</p>
-<div class="hover-nav">
-<ul>
-<li><a href="../../../../index.html">⇦ home</a></li>
-<li><a href="../index.html">hello_world</a></li>
-</ul>
-</div>`;
-document.getElementById("TOC").prepend(navCrumbs); 
-</script>
+<p><a href="./012.julia_set.html"><code>&lt;--</code> web-sys: canvas Julia set</a><br />
+Next example: <a href="./014.webgl.html">web-sys: webGl <code>--&gt;</code></a></p>
 
                     </main>
 

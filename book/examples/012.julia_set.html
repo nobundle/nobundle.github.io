@@ -173,32 +173,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div class="navbar"><a class="openbtn" onclick="openNav()">&#9776;</a></div>
-<main>
-<p><a href="./011.canvas.html"><code>&lt;--</code> web-sys: canvas hello world</a></p>
+                        <!-- This is an outline of how to structure a tech tutorial -->
+<!-- Introduction - Essential summary of the tutorial -->
+<!-- Overview - The problem you are trying to solve with the tutorial -->
+<!-- Prerequisites - What the reader must have before getting started. -->
+<!-- Lab - Step-by-step instructions -->
+<!-- Validation - How should the reader verify the tutorial outcome? -->
+<!-- Tearing down - Cleaning up resources -->
+<!-- Conclusion - Takeaways -->
 <h2 id="web-sys-julia-set"><a class="header" href="#web-sys-julia-set">web-sys: Julia Set</a></h2>
 <p><em>While not showing off a lot of web_sys API surface area, this example shows a neat fractal that you can make!</em>
-_ <a href="https://rustwasm.github.io/wasm-bindgen/examples/julia.html">wasm-bindgen Guide</a>{target="_blank"}</p>
-<p><a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/julia_set">web-sys: Julia Set</a>{target="_blank"}</p>
+<a href="https://rustwasm.github.io/wasm-bindgen/examples/julia.html" target="_blank">_ [wasm-bindgen Guide]</a></p>
+<p>Original <a href="https://github.com/rustwasm/wasm-bindgen/tree/master/examples/julia_set" target="_blank">[web-sys: Julia Set]</a></p>
 <h3 id="setup-the-project"><a class="header" href="#setup-the-project">setup the project</a></h3>
 <pre><code class="language-sh">cargo new julia_set --lib
 cd julia_set
 mkdir -p www/js www/html www/css
 cargo add wasm-bindgen
-
+cargo add web-sys -F "ImageData, CanvasRenderingContext2d"
 </code></pre>
 <p>Edit Cargo.toml</p>
 <pre><code class="language-toml">[lib]
 crate-type = ["cdylib"]
-
-[dependencies]
-wasm-bindgen = "0.2.89"
-
-[dependencies.web-sys]
-version = "0.3.66"
+</code></pre>
+<p>and change</p>
+<p><code>web-sys = { version = "0.3.69", features = ["ImageData", "CanvasRenderingContext2d"] }</code></p>
+<p>to</p>
+<pre><code>[dependencies.web-sys]
+version = "0.3.69"
 features = [
-  'ImageData',
-  'CanvasRenderingContext2d',
+  "ImageData",
+  "CanvasRenderingContext2d",
 ]
 </code></pre>
 <p>the index.html</p>
@@ -234,9 +239,9 @@ features = [
 &lt;/html&gt;
 </code></pre>
 <ul>
-<li><a href="https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/julia_set/styles/normalize.css">download normalize.css</a>{target="_blank"}</li>
-<li><a href="https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/julia_set/styles/skeleton.css">download skeleton.css</a>{target="_blank"}</li>
-<li><a href="https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/julia_set/styles/style.css">download style.css</a>{target="_blank"}</li>
+<li>download <a href="https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/julia_set/styles/normalize.css" target="_blank">normalize.css</a></li>
+<li>download <a href="https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/julia_set/styles/skeleton.css" target="_blank">skeleton.css</a></li>
+<li>download <a href="https://raw.githubusercontent.com/rustwasm/wasm-bindgen/main/examples/julia_set/styles/style.css" target="_blank">style.css</a></li>
 </ul>
 <p>put them in <code>www/css</code></p>
 <p>Next in <code>www/js/index.js</code></p>
@@ -356,34 +361,17 @@ impl Add&lt;Complex&gt; for Complex {
 <span class="boring">}</span></code></pre></pre>
 <h2 id="build-and-serve"><a class="header" href="#build-and-serve">build and serve</a></h2>
 <pre><code class="language-sh">wasm-pack build --target web --no-typescript --out-dir www/pkg
-
-http www
+</code></pre>
+<pre><code>http www
 </code></pre>
 <p>open <code>index.html</code></p>
 <pre><code class="language-sh">firefox http://localhost:8000/html/
 </code></pre>
+<p><img src="../img/012.julia_set.png" alt="julia set" /></p>
 <hr />
 <h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
-<p>Next example: <a href="./013.web_audio.html">WebAudio <code>--&gt;</code></a></p>
-</main>
-<script src="https://lerina.github.io/js/toc.js"></script>
-<script>
-let anchor= document.createElement('a');
-anchor.href="javascript:closeNav()"; //void(0)"; //anchor[0].onclick = closeNav();
-anchor.className = "closebtn";  
-anchor.innerHTML="&times;";
-document.getElementById("TOC").prepend(anchor);
-<p>let navCrumbs= document.createElement('div');
-navCrumbs.className = "hover-nav";
-navCrumbs.innerHTML = `</p>
-<div class="hover-nav">
-<ul>
-<li><a href="../../../../index.html">⇦ home</a></li>
-<li><a href="../index.html">hello_world</a></li>
-</ul>
-</div>`;
-document.getElementById("TOC").prepend(navCrumbs); 
-</script>
+<p><a href="./011.canvas.html"><code>&lt;--</code> web-sys: canvas hello world</a>
+<a href="./013.web_audio.html">WebAudio <code>--&gt;</code></a></p>
 
                     </main>
 
