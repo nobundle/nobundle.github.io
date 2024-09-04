@@ -422,7 +422,7 @@ It then calls the alert function we asked for in the extern block above.</p>
 <p>So the <code>alert</code> in <code>greet</code> calls the <code>alert</code> in the <code>extern</code> block,
 which is glued to <code>window.alert</code> in the browser runtime.</p>
 <p>For the curious, have a look at
-<a href="https://rustwasm.github.io/wasm-bindgen/contributing/design/index.html">Design of wasm-bindgen</a>{target="_blank"}</p>
+<a href="https://rustwasm.github.io/wasm-bindgen/contributing/design/index.html" target="_bank">[Design of wasm-bindgen]</a></p>
 <h2 id="indexhtml-and-indexjs-files"><a class="header" href="#indexhtml-and-indexjs-files">index.html and index.js files</a></h2>
 <ol>
 <li>index.html</li>
@@ -539,22 +539,6 @@ run();
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

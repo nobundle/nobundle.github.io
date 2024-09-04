@@ -293,6 +293,7 @@ fn start() {
 <pre><code class="language-sh">firefox http://localhost:8000/html/
 </code></pre>
 <hr />
+<p><img src="../img/011.canvas.png" alt="canvas smiley" /></p>
 <h2 id="whats-next"><a class="header" href="#whats-next">What's next?</a></h2>
 <p><a href="./010.weather_report.html"><code>&lt;--</code> web-sys: Weather report</a>
 <a href="./012.julia_set.html">web-sys: canvas Julia set <code>--&gt;</code></a></p>
@@ -326,22 +327,6 @@ fn start() {
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
